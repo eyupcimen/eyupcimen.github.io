@@ -8,601 +8,145 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #0a0a0a;
-    --bg2: #111111;
-    --bg3: #1a1a1a;
-    --border: rgba(255,255,255,0.08);
-    --border2: rgba(255,255,255,0.14);
-    --accent: #4f9eff;
-    --accent2: #ff6b35;
-    --text: #f0f0f0;
-    --text2: #888;
-    --text3: #555;
-    --mono: 'DM Mono', monospace;
-    --sans: 'Syne', sans-serif;
+    --bg: #0a0a0a; --bg2: #111111; --bg3: #1a1a1a;
+    --border: rgba(255,255,255,0.08); --border2: rgba(255,255,255,0.14);
+    --accent: #4f9eff; --accent2: #ff6b35;
+    --text: #f0f0f0; --text2: #888; --text3: #555;
+    --mono: 'DM Mono', monospace; --sans: 'Syne', sans-serif;
     --green: #3ecf8e;
   }
-
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: var(--mono);
-    font-size: 14px;
-    line-height: 1.7;
-    overflow-x: hidden;
-  }
-
-  /* Grid background */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image:
-      linear-gradient(rgba(79,158,255,0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(79,158,255,0.03) 1px, transparent 1px);
-    background-size: 48px 48px;
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  /* Glow orb */
-  body::after {
-    content: '';
-    position: fixed;
-    top: -200px;
-    right: -200px;
-    width: 600px;
-    height: 600px;
-    background: radial-gradient(circle, rgba(79,158,255,0.06) 0%, transparent 70%);
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  .container {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 0 24px;
-    position: relative;
-    z-index: 1;
-  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { background:var(--bg); color:var(--text); font-family:var(--mono); font-size:14px; line-height:1.7; overflow-x:hidden; }
+  body::before { content:''; position:fixed; inset:0; background-image: linear-gradient(rgba(79,158,255,0.03) 1px,transparent 1px), linear-gradient(90deg,rgba(79,158,255,0.03) 1px,transparent 1px); background-size:48px 48px; pointer-events:none; z-index:0; }
 
   /* NAV */
-  nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    background: rgba(10,10,10,0.85);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
-  }
-
-  nav .inner {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 0 24px;
-    height: 52px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .nav-logo {
-    font-family: var(--sans);
-    font-weight: 800;
-    font-size: 15px;
-    color: var(--text);
-    letter-spacing: -0.02em;
-  }
-
-  .nav-logo span { color: var(--accent); }
-
-  .nav-links {
-    display: flex;
-    gap: 24px;
-    list-style: none;
-  }
-
-  .nav-links a {
-    color: var(--text2);
-    text-decoration: none;
-    font-size: 12px;
-    letter-spacing: 0.05em;
-    transition: color 0.2s;
-  }
-
-  .nav-links a:hover { color: var(--text); }
-
-  /* HERO */
-  .hero {
-    padding: 140px 0 80px;
-    position: relative;
-  }
-
-  .hero-label {
-    font-size: 11px;
-    letter-spacing: 0.15em;
-    color: var(--accent);
-    text-transform: uppercase;
-    margin-bottom: 20px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .hero-label::before {
-    content: '';
-    display: inline-block;
-    width: 20px;
-    height: 1px;
-    background: var(--accent);
-  }
-
-  h1 {
-    font-family: var(--sans);
-    font-size: clamp(42px, 7vw, 72px);
-    font-weight: 800;
-    line-height: 1.0;
-    letter-spacing: -0.03em;
-    margin-bottom: 12px;
-    color: var(--text);
-  }
-
-  h1 .dim { color: var(--text3); }
-  h1 .acc { color: var(--accent); }
-
-  .hero-sub {
-    font-size: 15px;
-    color: var(--text2);
-    max-width: 520px;
-    margin-bottom: 32px;
-    line-height: 1.8;
-  }
-
-  .hero-badges {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-bottom: 40px;
-  }
-
-  .badge {
-    padding: 5px 12px;
-    border: 1px solid var(--border2);
-    border-radius: 2px;
-    font-size: 11px;
-    letter-spacing: 0.04em;
-    color: var(--text2);
-    background: var(--bg2);
-  }
-
-  .badge.green { border-color: rgba(62,207,142,0.3); color: var(--green); background: rgba(62,207,142,0.05); }
-  .badge.blue { border-color: rgba(79,158,255,0.3); color: var(--accent); background: rgba(79,158,255,0.05); }
-
-  .hero-cta {
-    display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
-  }
-
-  .btn {
-    padding: 10px 20px;
-    font-family: var(--mono);
-    font-size: 12px;
-    letter-spacing: 0.04em;
-    border-radius: 2px;
-    cursor: pointer;
-    text-decoration: none;
-    transition: all 0.2s;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-  }
-
-  .btn-primary {
-    background: var(--accent);
-    color: #000;
-    border: none;
-    font-weight: 500;
-  }
-
-  .btn-primary:hover { background: #74b3ff; }
-
-  .btn-outline {
-    background: transparent;
-    color: var(--text);
-    border: 1px solid var(--border2);
-  }
-
-  .btn-outline:hover { border-color: var(--text2); }
-
-  /* STATS BAR */
-  .stats-bar {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    border: 1px solid var(--border);
-    border-radius: 2px;
-    margin-bottom: 80px;
-    overflow: hidden;
-  }
-
-  .stat {
-    padding: 20px 24px;
-    border-right: 1px solid var(--border);
-    position: relative;
-  }
-
-  .stat:last-child { border-right: none; }
-
-  .stat-num {
-    font-family: var(--sans);
-    font-size: 28px;
-    font-weight: 800;
-    color: var(--text);
-    letter-spacing: -0.03em;
-    line-height: 1;
-    margin-bottom: 4px;
-  }
-
-  .stat-num span { color: var(--accent); font-size: 18px; }
-  .stat-label { font-size: 11px; color: var(--text3); letter-spacing: 0.04em; }
-
-  /* SECTION HEADERS */
-  .section { margin-bottom: 80px; }
-
-  .section-header {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    margin-bottom: 32px;
-  }
-
-  .section-num {
-    font-size: 11px;
-    color: var(--text3);
-    letter-spacing: 0.1em;
-  }
-
-  h2 {
-    font-family: var(--sans);
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--text2);
-  }
-
-  .section-line {
-    flex: 1;
-    height: 1px;
-    background: var(--border);
-  }
-
-  /* SKILLS */
-  .skills-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 1px;
-    background: var(--border);
-    border: 1px solid var(--border);
-  }
-
-  .skill-item {
-    background: var(--bg);
-    padding: 16px 20px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    transition: background 0.2s;
-  }
-
-  .skill-item:hover { background: var(--bg2); }
-
-  .skill-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--accent);
-    flex-shrink: 0;
-  }
-
-  .skill-dot.orange { background: var(--accent2); }
-  .skill-dot.green { background: var(--green); }
-
-  .skill-name {
-    font-size: 13px;
-    color: var(--text);
-  }
-
-  .skill-level {
-    font-size: 10px;
-    color: var(--text3);
-    margin-left: auto;
-    letter-spacing: 0.05em;
-  }
-
-  /* EXPERIENCE */
-  .exp-list { display: flex; flex-direction: column; gap: 2px; }
-
-  .exp-item {
-    border: 1px solid var(--border);
-    border-radius: 2px;
-    overflow: hidden;
-    transition: border-color 0.2s;
-  }
-
-  .exp-item:hover { border-color: var(--border2); }
-
-  .exp-header {
-    padding: 20px 24px;
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 12px;
-    cursor: pointer;
-    align-items: start;
-  }
-
-  .exp-company {
-    font-family: var(--sans);
-    font-size: 16px;
-    font-weight: 700;
-    color: var(--text);
-    letter-spacing: -0.01em;
-    margin-bottom: 4px;
-  }
-
-  .exp-role {
-    font-size: 12px;
-    color: var(--accent);
-    letter-spacing: 0.03em;
-  }
-
-  .exp-meta {
-    text-align: right;
-  }
-
-  .exp-date {
-    font-size: 11px;
-    color: var(--text3);
-    letter-spacing: 0.04em;
-    display: block;
-    margin-bottom: 4px;
-  }
-
-  .exp-location {
-    font-size: 11px;
-    color: var(--text3);
-  }
-
-  .exp-body {
-    padding: 0 24px 20px;
-    border-top: 1px solid var(--border);
-  }
-
-  .exp-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    margin-bottom: 14px;
-    padding-top: 16px;
-  }
-
-  .tag {
-    padding: 3px 8px;
-    background: var(--bg3);
-    border: 1px solid var(--border);
-    border-radius: 2px;
-    font-size: 10px;
-    color: var(--text2);
-    letter-spacing: 0.04em;
-  }
-
-  .exp-bullets {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-  }
-
-  .exp-bullets li {
-    font-size: 13px;
-    color: var(--text2);
-    padding-left: 16px;
-    position: relative;
-    line-height: 1.6;
-  }
-
-  .exp-bullets li::before {
-    content: '›';
-    position: absolute;
-    left: 0;
-    color: var(--accent);
-  }
-
-  .exp-bullets li strong {
-    color: var(--text);
-    font-weight: 500;
-  }
-
-  /* AI / VIBE section */
-  .ai-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 2px;
-    background: var(--border);
-    border: 1px solid var(--border);
-  }
-
-  .ai-card {
-    background: var(--bg);
-    padding: 24px;
-    transition: background 0.2s;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .ai-card:hover { background: var(--bg2); }
-
-  .ai-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0;
-    width: 2px;
-    height: 100%;
-    background: var(--accent);
-    opacity: 0;
-    transition: opacity 0.2s;
-  }
-
-  .ai-card:hover::before { opacity: 1; }
-
-  .ai-card-icon {
-    font-size: 20px;
-    margin-bottom: 12px;
-  }
-
-  .ai-card-title {
-    font-family: var(--sans);
-    font-size: 14px;
-    font-weight: 700;
-    color: var(--text);
-    margin-bottom: 8px;
-    letter-spacing: -0.01em;
-  }
-
-  .ai-card-desc {
-    font-size: 12px;
-    color: var(--text2);
-    line-height: 1.7;
-  }
-
-  .ai-card-stack {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 4px;
-    margin-top: 12px;
-  }
-
-  /* EDUCATION */
-  .edu-block {
-    padding: 20px 24px;
-    border: 1px solid var(--border);
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 12px;
-    align-items: center;
-  }
-
-  .edu-degree {
-    font-family: var(--sans);
-    font-size: 15px;
-    font-weight: 700;
-    color: var(--text);
-    margin-bottom: 4px;
-    letter-spacing: -0.01em;
-  }
-
-  .edu-school { font-size: 13px; color: var(--text2); }
-  .edu-year { font-size: 12px; color: var(--text3); text-align: right; }
-
-  /* CONTACT */
-  .contact-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 2px;
-    background: var(--border);
-    border: 1px solid var(--border);
-  }
-
-  .contact-item {
-    background: var(--bg);
-    padding: 20px 24px;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    transition: background 0.2s;
-    text-decoration: none;
-  }
-
-  .contact-item:hover { background: var(--bg2); }
-
-  .contact-label {
-    font-size: 10px;
-    color: var(--text3);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-  }
-
-  .contact-value {
-    font-size: 13px;
-    color: var(--accent);
-  }
-
-  /* FOOTER */
-  footer {
-    border-top: 1px solid var(--border);
-    padding: 24px 0;
-    margin-top: 40px;
-  }
-
-  footer .inner {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 0 24px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .footer-text {
-    font-size: 11px;
-    color: var(--text3);
-  }
-
-  .footer-text span { color: var(--accent2); }
-
-  /* CURSOR BLINK */
-  .blink {
-    display: inline-block;
-    width: 3px;
-    height: 0.85em;
-    background: var(--accent);
-    margin-left: 4px;
-    vertical-align: middle;
-    animation: blink 1s step-end infinite;
-  }
-
-  @keyframes blink { 50% { opacity: 0; } }
-
-  /* ANIMATIONS */
-  .fade-in {
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fadeIn 0.6s ease forwards;
-  }
-
-  @keyframes fadeIn {
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .fade-in:nth-child(1) { animation-delay: 0.1s; }
-  .fade-in:nth-child(2) { animation-delay: 0.2s; }
-  .fade-in:nth-child(3) { animation-delay: 0.3s; }
-  .fade-in:nth-child(4) { animation-delay: 0.4s; }
-  .fade-in:nth-child(5) { animation-delay: 0.5s; }
-
-  /* RESPONSIVE */
-  @media (max-width: 640px) {
-    .stats-bar { grid-template-columns: repeat(2, 1fr); }
-    .nav-links { display: none; }
-    h1 { font-size: 38px; }
+  nav { position:fixed; top:0; left:0; right:0; z-index:100; background:rgba(10,10,10,0.88); backdrop-filter:blur(12px); border-bottom:1px solid var(--border); }
+  nav .inner { max-width:900px; margin:0 auto; padding:0 24px; height:52px; display:flex; align-items:center; justify-content:space-between; }
+  .nav-logo { font-family:var(--sans); font-weight:800; font-size:15px; color:var(--text); letter-spacing:-0.02em; }
+  .nav-logo span { color:var(--accent); }
+  .nav-links { display:flex; gap:24px; list-style:none; }
+  .nav-links a { color:var(--text2); text-decoration:none; font-size:12px; letter-spacing:0.05em; transition:color 0.2s; }
+  .nav-links a:hover { color:var(--text); }
+
+  /* GRAPH HERO */
+  .graph-hero { width:100%; margin-top:52px; }
+  .graph-canvas-wrap { position:relative; width:100%; height:30vh; min-height:220px; border-bottom:1px solid var(--border2); overflow:hidden; }
+  #graph-canvas { position:absolute; inset:0; width:100%; height:100%; cursor:grab; }
+  #graph-canvas:active { cursor:grabbing; }
+  .graph-legend { position:absolute; top:10px; right:14px; z-index:4; display:flex; flex-direction:column; gap:5px; pointer-events:none; }
+  .leg { display:flex; align-items:center; gap:6px; font-size:10px; color:rgba(255,255,255,0.28); letter-spacing:0.05em; }
+  .leg-dot { width:6px; height:6px; border-radius:50%; flex-shrink:0; }
+  .scroll-hint { position:absolute; bottom:8px; left:50%; transform:translateX(-50%); z-index:5; display:flex; flex-direction:column; align-items:center; gap:3px; font-size:9px; color:rgba(255,255,255,0.14); letter-spacing:0.12em; pointer-events:none; animation:bounceHint 2.2s ease-in-out infinite; }
+  .scroll-hint-arrow { width:1px; height:14px; background:linear-gradient(to bottom,rgba(255,255,255,0.15),transparent); }
+  @keyframes bounceHint { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(4px)} }
+
+  .graph-overlay { width:100%; padding:22px 32px 26px; border-bottom:1px solid var(--border); }
+  .hero-label { font-size:10px; letter-spacing:0.15em; color:var(--accent); text-transform:uppercase; margin-bottom:10px; display:flex; align-items:center; gap:7px; }
+  .hero-label::before { content:''; display:inline-block; width:16px; height:1px; background:var(--accent); }
+  h1 { font-family:var(--sans); font-size:clamp(26px,4vw,48px); font-weight:800; line-height:1.0; letter-spacing:-0.03em; margin-bottom:14px; color:var(--text); }
+  h1 .dim { color:var(--text3); }
+  h1 .acc { color:var(--accent); }
+  .hero-badges { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:14px; }
+  .badge { padding:4px 10px; border:1px solid var(--border2); border-radius:2px; font-size:11px; letter-spacing:0.03em; color:var(--text2); background:var(--bg2); }
+  .badge.green { border-color:rgba(62,207,142,0.35); color:var(--green); background:rgba(62,207,142,0.08); }
+  .badge.blue  { border-color:rgba(79,158,255,0.35); color:var(--accent); background:rgba(79,158,255,0.08); }
+  .hero-cta { display:flex; gap:8px; flex-wrap:wrap; }
+  .btn { padding:8px 16px; font-family:var(--mono); font-size:11px; letter-spacing:0.04em; border-radius:2px; cursor:pointer; text-decoration:none; transition:all 0.2s; display:inline-flex; align-items:center; gap:5px; }
+  .btn-primary { background:var(--accent); color:#000; border:none; font-weight:500; }
+  .btn-primary:hover { background:#74b3ff; }
+  .btn-outline { background:transparent; color:var(--text); border:1px solid var(--border2); }
+  .btn-outline:hover { border-color:var(--text2); }
+
+  #graph-tooltip { position:fixed; background:rgba(8,8,10,0.95); border:1px solid rgba(255,255,255,0.1); border-radius:4px; padding:8px 12px; font-size:11px; line-height:1.6; pointer-events:none; opacity:0; transition:opacity 0.12s; z-index:200; backdrop-filter:blur(10px); white-space:nowrap; }
+  #graph-tooltip.visible { opacity:1; }
+  #graph-tooltip .tt-name { font-family:var(--sans); font-size:12px; font-weight:600; color:#fff; margin-bottom:2px; }
+  #graph-tooltip .tt-cat  { font-size:10px; color:var(--text2); }
+
+  /* MAIN */
+  .container { max-width:900px; margin:0 auto; padding:0 24px; position:relative; z-index:1; }
+
+  .stats-bar { display:grid; grid-template-columns:repeat(4,1fr); border:1px solid var(--border); border-radius:2px; margin:36px 0 72px; overflow:hidden; }
+  .stat { padding:18px 22px; border-right:1px solid var(--border); }
+  .stat:last-child { border-right:none; }
+  .stat-num { font-family:var(--sans); font-size:26px; font-weight:800; color:var(--text); letter-spacing:-0.03em; line-height:1; margin-bottom:4px; }
+  .stat-num span { color:var(--accent); font-size:16px; }
+  .stat-label { font-size:10px; color:var(--text3); letter-spacing:0.04em; }
+
+  .section { margin-bottom:72px; }
+  .section-header { display:flex; align-items:center; gap:14px; margin-bottom:28px; }
+  .section-num { font-size:11px; color:var(--text3); letter-spacing:0.1em; }
+  h2 { font-family:var(--sans); font-size:13px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--text2); }
+  .section-line { flex:1; height:1px; background:var(--border); }
+
+  .skills-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:1px; background:var(--border); border:1px solid var(--border); }
+  .skill-item { background:var(--bg); padding:14px 18px; display:flex; align-items:center; gap:10px; transition:background 0.2s; }
+  .skill-item:hover { background:var(--bg2); }
+  .skill-dot { width:6px; height:6px; border-radius:50%; background:var(--accent); flex-shrink:0; }
+  .skill-dot.orange { background:var(--accent2); }
+  .skill-dot.green  { background:var(--green); }
+  .skill-name  { font-size:13px; color:var(--text); }
+  .skill-level { font-size:10px; color:var(--text3); margin-left:auto; letter-spacing:0.04em; }
+
+  .exp-list { display:flex; flex-direction:column; gap:2px; }
+  .exp-item { border:1px solid var(--border); border-radius:2px; overflow:hidden; transition:border-color 0.2s; }
+  .exp-item:hover { border-color:var(--border2); }
+  .exp-header { padding:18px 22px; display:grid; grid-template-columns:1fr auto; gap:12px; align-items:start; }
+  .exp-company { font-family:var(--sans); font-size:15px; font-weight:700; color:var(--text); letter-spacing:-0.01em; margin-bottom:3px; }
+  .exp-role { font-size:11px; color:var(--accent); letter-spacing:0.03em; }
+  .exp-meta { text-align:right; }
+  .exp-date { font-size:11px; color:var(--text3); letter-spacing:0.04em; display:block; margin-bottom:3px; }
+  .exp-location { font-size:11px; color:var(--text3); }
+  .exp-body { padding:0 22px 18px; border-top:1px solid var(--border); }
+  .exp-tags { display:flex; flex-wrap:wrap; gap:5px; margin-bottom:12px; padding-top:14px; }
+  .tag { padding:3px 7px; background:var(--bg3); border:1px solid var(--border); border-radius:2px; font-size:10px; color:var(--text2); letter-spacing:0.03em; }
+  .exp-bullets { list-style:none; display:flex; flex-direction:column; gap:5px; }
+  .exp-bullets li { font-size:13px; color:var(--text2); padding-left:14px; position:relative; line-height:1.6; }
+  .exp-bullets li::before { content:'›'; position:absolute; left:0; color:var(--accent); }
+  .exp-bullets li strong { color:var(--text); font-weight:500; }
+
+  .ai-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:2px; background:var(--border); border:1px solid var(--border); }
+  .ai-card { background:var(--bg); padding:22px; transition:background 0.2s; position:relative; overflow:hidden; }
+  .ai-card:hover { background:var(--bg2); }
+  .ai-card::before { content:''; position:absolute; top:0; left:0; width:2px; height:100%; background:var(--accent); opacity:0; transition:opacity 0.2s; }
+  .ai-card:hover::before { opacity:1; }
+  .ai-card-icon { font-size:18px; margin-bottom:10px; }
+  .ai-card-title { font-family:var(--sans); font-size:14px; font-weight:700; color:var(--text); margin-bottom:7px; letter-spacing:-0.01em; }
+  .ai-card-desc { font-size:12px; color:var(--text2); line-height:1.7; }
+  .ai-card-stack { display:flex; flex-wrap:wrap; gap:4px; margin-top:10px; }
+
+  .edu-block { padding:18px 22px; border:1px solid var(--border); display:grid; grid-template-columns:1fr auto; gap:12px; align-items:center; }
+  .edu-degree { font-family:var(--sans); font-size:15px; font-weight:700; color:var(--text); margin-bottom:3px; }
+  .edu-school { font-size:13px; color:var(--text2); }
+  .edu-year { font-size:12px; color:var(--text3); text-align:right; }
+
+  .contact-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:2px; background:var(--border); border:1px solid var(--border); }
+  .contact-item { background:var(--bg); padding:18px 22px; display:flex; flex-direction:column; gap:5px; transition:background 0.2s; text-decoration:none; }
+  .contact-item:hover { background:var(--bg2); }
+  .contact-label { font-size:10px; color:var(--text3); letter-spacing:0.1em; text-transform:uppercase; }
+  .contact-value { font-size:13px; color:var(--accent); }
+
+  footer { border-top:1px solid var(--border); padding:22px 0; margin-top:40px; }
+  footer .inner { max-width:900px; margin:0 auto; padding:0 24px; display:flex; justify-content:space-between; align-items:center; }
+  .footer-text { font-size:11px; color:var(--text3); }
+  .footer-text span { color:var(--accent2); }
+
+  .blink { display:inline-block; width:3px; height:0.85em; background:var(--accent); margin-left:3px; vertical-align:middle; animation:blink 1s step-end infinite; }
+  @keyframes blink { 50%{opacity:0;} }
+
+  @media (max-width:640px) {
+    .stats-bar { grid-template-columns:repeat(2,1fr); }
+    .nav-links { display:none; }
+    .graph-legend { display:none; }
   }
 </style>
 </head>
 <body>
+
+<div id="graph-tooltip">
+  <div class="tt-name" id="tt-name"></div>
+  <div class="tt-cat"  id="tt-cat"></div>
+</div>
 
 <nav>
   <div class="inner">
@@ -616,408 +160,213 @@
   </div>
 </nav>
 
-<div class="container">
-
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-label fade-in">available for hire · Germany</div>
-    <h1 class="fade-in">
-      Eyup<br>
-      <span class="dim">Cimen</span><span class="acc">.</span>
-      <span class="blink"></span>
-    </h1>
-    <p class="hero-sub fade-in">
-      Senior iOS Developer with 12+ years of experience building production-grade mobile applications — from fintech superapps to augmented reality. Now also building AI-powered automation systems and vibe-coding products with LLMs.
-    </p>
-    <div class="hero-badges fade-in">
+<div class="graph-hero">
+  <div class="graph-canvas-wrap">
+    <canvas id="graph-canvas"></canvas>
+    <div class="graph-legend">
+      <div class="leg"><div class="leg-dot" style="background:#4f9eff"></div>iOS / Mobile</div>
+      <div class="leg"><div class="leg-dot" style="background:#4ade80"></div>AI / Automation</div>
+      <div class="leg"><div class="leg-dot" style="background:#f472b6"></div>Companies</div>
+      <div class="leg"><div class="leg-dot" style="background:#fb923c"></div>Skills / Tech</div>
+      <div class="leg"><div class="leg-dot" style="background:#a78bfa"></div>Projects</div>
+    </div>
+    <div class="scroll-hint">SCROLL<div class="scroll-hint-arrow"></div></div>
+  </div>
+  <div class="graph-overlay">
+    <div class="hero-label">available for hire · Germany</div>
+    <h1>Eyup <span class="dim">Cimen</span><span class="acc">.</span><span class="blink"></span></h1>
+    <div class="hero-badges">
       <span class="badge green">● Open to work</span>
       <span class="badge blue">No notice period</span>
       <span class="badge">📍 Weil der Stadt, BW</span>
       <span class="badge">🇩🇪 Work permit ✓</span>
-      <span class="badge">Swift · SwiftUI · Objective-C</span>
+      <span class="badge">Swift · SwiftUI · AI</span>
     </div>
-    <div class="hero-cta fade-in">
+    <div class="hero-cta">
       <a href="mailto:cmneyp@gmail.com" class="btn btn-primary">→ Contact me</a>
       <a href="https://github.com/eyupcimen" target="_blank" class="btn btn-outline">GitHub ↗</a>
-    </div>
-  </section>
-
-  <!-- STATS -->
-  <div class="stats-bar">
-    <div class="stat">
-      <div class="stat-num">12<span>+</span></div>
-      <div class="stat-label">years experience</div>
-    </div>
-    <div class="stat">
-      <div class="stat-num">15<span>+</span></div>
-      <div class="stat-label">apps shipped</div>
-    </div>
-    <div class="stat">
-      <div class="stat-num">99<span>.8%</span></div>
-      <div class="stat-label">crash-free rate</div>
-    </div>
-    <div class="stat">
-      <div class="stat-num">5<span>+</span></div>
-      <div class="stat-label">industries</div>
+      <a href="https://x.com/eyupcimen" target="_blank" class="btn btn-outline">X ↗</a>
     </div>
   </div>
+</div>
 
-  <!-- SKILLS -->
+<div class="container">
+
+  <div class="stats-bar">
+    <div class="stat"><div class="stat-num">12<span>+</span></div><div class="stat-label">years experience</div></div>
+    <div class="stat"><div class="stat-num">15<span>+</span></div><div class="stat-label">apps shipped</div></div>
+    <div class="stat"><div class="stat-num">99<span>.8%</span></div><div class="stat-label">crash-free rate</div></div>
+    <div class="stat"><div class="stat-num">5<span>+</span></div><div class="stat-label">industries</div></div>
+  </div>
+
   <section class="section" id="skills">
-    <div class="section-header">
-      <span class="section-num">01</span>
-      <h2>Technical Skills</h2>
-      <div class="section-line"></div>
-    </div>
+    <div class="section-header"><span class="section-num">01</span><h2>Technical Skills</h2><div class="section-line"></div></div>
     <div class="skills-grid">
-      <div class="skill-item">
-        <div class="skill-dot"></div>
-        <span class="skill-name">Swift</span>
-        <span class="skill-level">expert</span>
-      </div>
-      <div class="skill-item">
-        <div class="skill-dot"></div>
-        <span class="skill-name">SwiftUI</span>
-        <span class="skill-level">expert</span>
-      </div>
-      <div class="skill-item">
-        <div class="skill-dot"></div>
-        <span class="skill-name">UIKit</span>
-        <span class="skill-level">expert</span>
-      </div>
-      <div class="skill-item">
-        <div class="skill-dot"></div>
-        <span class="skill-name">Objective-C</span>
-        <span class="skill-level">expert</span>
-      </div>
-      <div class="skill-item">
-        <div class="skill-dot"></div>
-        <span class="skill-name">MVVM / VIP / MVC</span>
-        <span class="skill-level">expert</span>
-      </div>
-      <div class="skill-item">
-        <div class="skill-dot"></div>
-        <span class="skill-name">Protocol-Oriented Programming</span>
-        <span class="skill-level">expert</span>
-      </div>
-      <div class="skill-item">
-        <div class="skill-dot"></div>
-        <span class="skill-name">Swift Package Manager</span>
-        <span class="skill-level">advanced</span>
-      </div>
-      <div class="skill-item">
-        <div class="skill-dot"></div>
-        <span class="skill-name">Async/Await · GCD</span>
-        <span class="skill-level">advanced</span>
-      </div>
-      <div class="skill-item">
-        <div class="skill-dot"></div>
-        <span class="skill-name">ARKit · RealityKit</span>
-        <span class="skill-level">advanced</span>
-      </div>
-      <div class="skill-item">
-        <div class="skill-dot"></div>
-        <span class="skill-name">Firebase · Crashlytics</span>
-        <span class="skill-level">advanced</span>
-      </div>
-      <div class="skill-item">
-        <div class="skill-dot"></div>
-        <span class="skill-name">RxSwift · Combine</span>
-        <span class="skill-level">advanced</span>
-      </div>
-      <div class="skill-item">
-        <div class="skill-dot"></div>
-        <span class="skill-name">Realm · CoreData</span>
-        <span class="skill-level">advanced</span>
-      </div>
-      <div class="skill-item">
-        <div class="skill-dot"></div>
-        <span class="skill-name">REST API · GraphQL</span>
-        <span class="skill-level">advanced</span>
-      </div>
-      <div class="skill-item">
-        <div class="skill-dot"></div>
-        <span class="skill-name">Bitrise CI/CD</span>
-        <span class="skill-level">advanced</span>
-      </div>
-      <div class="skill-item">
-        <div class="skill-dot orange"></div>
-        <span class="skill-name">n8n Automation</span>
-        <span class="skill-level">advanced</span>
-      </div>
-      <div class="skill-item">
-        <div class="skill-dot orange"></div>
-        <span class="skill-name">Next.js · TypeScript</span>
-        <span class="skill-level">intermediate</span>
-      </div>
-      <div class="skill-item">
-        <div class="skill-dot orange"></div>
-        <span class="skill-name">Supabase · pgvector</span>
-        <span class="skill-level">intermediate</span>
-      </div>
-      <div class="skill-item">
-        <div class="skill-dot green"></div>
-        <span class="skill-name">LLM Prompt Engineering</span>
-        <span class="skill-level">advanced</span>
-      </div>
-      <div class="skill-item">
-        <div class="skill-dot green"></div>
-        <span class="skill-name">Claude API · OpenAI API</span>
-        <span class="skill-level">advanced</span>
-      </div>
-      <div class="skill-item">
-        <div class="skill-dot green"></div>
-        <span class="skill-name">Vibe Coding / AI-assisted dev</span>
-        <span class="skill-level">advanced</span>
-      </div>
+      <div class="skill-item"><div class="skill-dot"></div><span class="skill-name">Swift</span><span class="skill-level">expert</span></div>
+      <div class="skill-item"><div class="skill-dot"></div><span class="skill-name">SwiftUI</span><span class="skill-level">expert</span></div>
+      <div class="skill-item"><div class="skill-dot"></div><span class="skill-name">UIKit</span><span class="skill-level">expert</span></div>
+      <div class="skill-item"><div class="skill-dot"></div><span class="skill-name">Objective-C</span><span class="skill-level">expert</span></div>
+      <div class="skill-item"><div class="skill-dot"></div><span class="skill-name">MVVM / VIP / MVC</span><span class="skill-level">expert</span></div>
+      <div class="skill-item"><div class="skill-dot"></div><span class="skill-name">Protocol-Oriented Programming</span><span class="skill-level">expert</span></div>
+      <div class="skill-item"><div class="skill-dot"></div><span class="skill-name">Swift Package Manager</span><span class="skill-level">advanced</span></div>
+      <div class="skill-item"><div class="skill-dot"></div><span class="skill-name">Async/Await · GCD</span><span class="skill-level">advanced</span></div>
+      <div class="skill-item"><div class="skill-dot"></div><span class="skill-name">ARKit · RealityKit</span><span class="skill-level">advanced</span></div>
+      <div class="skill-item"><div class="skill-dot"></div><span class="skill-name">Firebase · Crashlytics</span><span class="skill-level">advanced</span></div>
+      <div class="skill-item"><div class="skill-dot"></div><span class="skill-name">RxSwift · Combine</span><span class="skill-level">advanced</span></div>
+      <div class="skill-item"><div class="skill-dot"></div><span class="skill-name">Realm · CoreData</span><span class="skill-level">advanced</span></div>
+      <div class="skill-item"><div class="skill-dot"></div><span class="skill-name">REST API · GraphQL</span><span class="skill-level">advanced</span></div>
+      <div class="skill-item"><div class="skill-dot"></div><span class="skill-name">Bitrise CI/CD</span><span class="skill-level">advanced</span></div>
+      <div class="skill-item"><div class="skill-dot orange"></div><span class="skill-name">n8n Automation</span><span class="skill-level">advanced</span></div>
+      <div class="skill-item"><div class="skill-dot orange"></div><span class="skill-name">Next.js · TypeScript</span><span class="skill-level">intermediate</span></div>
+      <div class="skill-item"><div class="skill-dot orange"></div><span class="skill-name">Supabase · pgvector</span><span class="skill-level">intermediate</span></div>
+      <div class="skill-item"><div class="skill-dot green"></div><span class="skill-name">LLM Prompt Engineering</span><span class="skill-level">advanced</span></div>
+      <div class="skill-item"><div class="skill-dot green"></div><span class="skill-name">Claude API · OpenAI API</span><span class="skill-level">advanced</span></div>
+      <div class="skill-item"><div class="skill-dot green"></div><span class="skill-name">Vibe Coding / AI-assisted dev</span><span class="skill-level">advanced</span></div>
     </div>
   </section>
 
-  <!-- EXPERIENCE -->
   <section class="section" id="experience">
-    <div class="section-header">
-      <span class="section-num">02</span>
-      <h2>Experience</h2>
-      <div class="section-line"></div>
-    </div>
-
+    <div class="section-header"><span class="section-num">02</span><h2>Experience</h2><div class="section-line"></div></div>
     <div class="exp-list">
 
       <div class="exp-item">
         <div class="exp-header">
-          <div>
-            <div class="exp-company">Ozan SuperApp</div>
-            <div class="exp-role">Senior iOS Developer</div>
-          </div>
-          <div class="exp-meta">
-            <span class="exp-date">Apr 2022 — Jun 2023</span>
-            <span class="exp-location">Istanbul, Turkey</span>
-          </div>
+          <div><div class="exp-company">Antigravity <span style="color:var(--text3);font-size:13px;font-weight:400">— Founder</span></div><div class="exp-role">AI Automation · Vibe Coding · Independent Projects</div></div>
+          <div class="exp-meta"><span class="exp-date">Jun 2023 — Present</span><span class="exp-location">Stuttgart, Germany</span></div>
         </div>
         <div class="exp-body">
-          <div class="exp-tags">
-            <span class="tag">SwiftUI</span>
-            <span class="tag">MVVM</span>
-            <span class="tag">Swift Package Manager</span>
-            <span class="tag">Firebase</span>
-            <span class="tag">Alamofire</span>
-            <span class="tag">Bitrise CI/CD</span>
-          </div>
+          <div class="exp-tags"><span class="tag">n8n</span><span class="tag">Claude API</span><span class="tag">OpenAI</span><span class="tag">Veo3 / Sora</span><span class="tag">Next.js</span><span class="tag">Supabase</span><span class="tag">pgvector</span><span class="tag">Vibe Coding</span></div>
           <ul class="exp-bullets">
-            <li>Implemented <strong>8 major features</strong> — Hotel Booking, Ticket Buying, Bill Payment, Gaming, Split Payment, Cashback, and ReceiptScan — using SwiftUI.</li>
-            <li>Modularized the project with Swift Package Manager, improving app performance by <strong>20%</strong> and reducing build time by <strong>30%</strong>.</li>
-            <li>Optimized CI/CD with Bitrise and conducted code reviews, lowering production bugs by <strong>17%</strong>.</li>
-            <li>Applied Protocol-Oriented Programming and MVVM architecture throughout.</li>
+            <li>Founded <strong>Antigravity</strong> — AI-powered automation agency delivering workflow and content pipeline solutions.</li>
+            <li>Built end-to-end <strong>AI video content pipelines</strong> with n8n, Veo3, Sora, and OpenAI Vision for fully automated YouTube production.</li>
+            <li>Developed <strong>LegalVector</strong> — RAG-based lawyer knowledge portal (Next.js, Supabase, pgvector, Claude API).</li>
+            <li>Adopted <strong>vibe coding</strong> workflow — full-stack products built rapidly with LLM APIs, Cursor, and iterative prompt engineering.</li>
+            <li>Pursued German language certification — achieved <strong>B1 level</strong>, working toward B2.</li>
           </ul>
         </div>
       </div>
 
       <div class="exp-item">
         <div class="exp-header">
-          <div>
-            <div class="exp-company">Roofstacks</div>
-            <div class="exp-role">Senior iOS Developer</div>
-          </div>
-          <div class="exp-meta">
-            <span class="exp-date">Oct 2021 — Apr 2022</span>
-            <span class="exp-location">Istanbul, Turkey</span>
-          </div>
+          <div><div class="exp-company">Ozan SuperApp</div><div class="exp-role">Senior iOS Developer</div></div>
+          <div class="exp-meta"><span class="exp-date">Apr 2022 — Jun 2023</span><span class="exp-location">Istanbul, Turkey</span></div>
         </div>
         <div class="exp-body">
-          <div class="exp-tags">
-            <span class="tag">Clean Swift (VIP)</span>
-            <span class="tag">RxSwift</span>
-            <span class="tag">Realm</span>
-            <span class="tag">Firebase Crashlytics</span>
-            <span class="tag">Moya</span>
-          </div>
+          <div class="exp-tags"><span class="tag">SwiftUI</span><span class="tag">MVVM</span><span class="tag">Swift Package Manager</span><span class="tag">Firebase</span><span class="tag">Alamofire</span><span class="tag">Bitrise CI/CD</span></div>
           <ul class="exp-bullets">
-            <li>Developed and released <strong>Bilet Dukkani</strong>, a low-cost flight ticket purchasing app.</li>
-            <li>Introduced the Wallet feature, speeding up ticket purchasing by <strong>35%</strong>.</li>
-            <li>Integrated Google Analytics for business team, improved app review cycle by <strong>23%</strong>.</li>
-            <li>Eliminated crashes and memory leaks using Firebase Crashlytics — boosted app performance by <strong>11%</strong>.</li>
+            <li>Implemented <strong>8 major features</strong> — Hotel Booking, Bill Payment, Cashback, ReceiptScan and more — using SwiftUI.</li>
+            <li>Swift Package Manager modularization: <strong>+20% performance</strong>, <strong>−30% build time</strong>.</li>
+            <li>Bitrise CI/CD + code reviews: production bugs down <strong>17%</strong>.</li>
           </ul>
         </div>
       </div>
 
       <div class="exp-item">
         <div class="exp-header">
-          <div>
-            <div class="exp-company">Ipucu Software</div>
-            <div class="exp-role">Senior iOS Developer</div>
-          </div>
-          <div class="exp-meta">
-            <span class="exp-date">Dec 2020 — Oct 2021</span>
-            <span class="exp-location">Istanbul, Turkey</span>
-          </div>
+          <div><div class="exp-company">Roofstacks</div><div class="exp-role">Senior iOS Developer</div></div>
+          <div class="exp-meta"><span class="exp-date">Oct 2021 — Apr 2022</span><span class="exp-location">Istanbul, Turkey</span></div>
         </div>
         <div class="exp-body">
-          <div class="exp-tags">
-            <span class="tag">XMPP Protocol</span>
-            <span class="tag">Realm</span>
-            <span class="tag">Multithreading / GCD</span>
-            <span class="tag">POP / OOP</span>
-          </div>
+          <div class="exp-tags"><span class="tag">Clean Swift (VIP)</span><span class="tag">RxSwift</span><span class="tag">Realm</span><span class="tag">Firebase Crashlytics</span><span class="tag">Moya</span></div>
           <ul class="exp-bullets">
-            <li>Built a real-time messaging module (similar to WhatsApp/Signal) inside Fups, a payment application, using XMPP Protocol.</li>
-            <li>Introduced Realm database — achieved <strong>45% faster message loading time</strong>.</li>
-            <li>Integrated in-chat financial features: send/request money, family accounts, shared payments.</li>
-            <li>Used Multithreading (GCD, Operation Queues, async tasks) for smooth performance.</li>
+            <li>Released <strong>Bilet Dukkani</strong> — low-cost flight app. Wallet feature: ticket purchasing <strong>35% faster</strong>.</li>
+            <li>Crashlytics: performance <strong>+11%</strong>. Review cycle improved <strong>23%</strong>.</li>
           </ul>
         </div>
       </div>
 
       <div class="exp-item">
         <div class="exp-header">
-          <div>
-            <div class="exp-company">Globme</div>
-            <div class="exp-role">Senior iOS Developer</div>
-          </div>
-          <div class="exp-meta">
-            <span class="exp-date">Mar 2020 — Dec 2021</span>
-            <span class="exp-location">Istanbul, Turkey</span>
-          </div>
+          <div><div class="exp-company">Ipucu Software</div><div class="exp-role">Senior iOS Developer</div></div>
+          <div class="exp-meta"><span class="exp-date">Dec 2020 — Oct 2021</span><span class="exp-location">Istanbul, Turkey</span></div>
         </div>
         <div class="exp-body">
-          <div class="exp-tags">
-            <span class="tag">MVVM</span>
-            <span class="tag">GraphQL</span>
-            <span class="tag">Moya</span>
-            <span class="tag">Firebase</span>
-            <span class="tag">NFC / BLE / QR</span>
-            <span class="tag">AVFoundation</span>
-          </div>
+          <div class="exp-tags"><span class="tag">XMPP Protocol</span><span class="tag">Realm</span><span class="tag">Multithreading / GCD</span></div>
           <ul class="exp-bullets">
-            <li>Developed <strong>Idenfit</strong> — a cutting-edge HR management application with attendance, shifts, leaves, and advances modules.</li>
-            <li>Implemented Bluetooth, NFC, QR, and RFID-based employee identification technologies.</li>
-            <li>Built <strong>Task App & Audit App</strong> from scratch — task creation, worker assignment, inspection flows.</li>
-            <li>Optimized performance using Multithreading (GCD, Serial/Parallel queues).</li>
+            <li>Built real-time messaging (WhatsApp-style) inside a fintech payment app using XMPP. Realm: <strong>45% faster</strong> loading.</li>
+            <li>In-chat financial features: money transfer, family accounts, shared payments.</li>
           </ul>
         </div>
       </div>
 
       <div class="exp-item">
         <div class="exp-header">
-          <div>
-            <div class="exp-company">Leo AR</div>
-            <div class="exp-role">Senior iOS Developer · Remote</div>
-          </div>
-          <div class="exp-meta">
-            <span class="exp-date">Oct 2019 — Mar 2020</span>
-            <span class="exp-location">San Francisco, USA</span>
-          </div>
+          <div><div class="exp-company">Globme</div><div class="exp-role">Senior iOS Developer</div></div>
+          <div class="exp-meta"><span class="exp-date">Mar 2020 — Dec 2021</span><span class="exp-location">Istanbul, Turkey</span></div>
         </div>
         <div class="exp-body">
-          <div class="exp-tags">
-            <span class="tag">ARKit</span>
-            <span class="tag">RealityKit</span>
-            <span class="tag">Motion Capture API</span>
-            <span class="tag">React Native</span>
-          </div>
+          <div class="exp-tags"><span class="tag">MVVM</span><span class="tag">GraphQL</span><span class="tag">NFC / BLE / QR</span><span class="tag">AVFoundation</span></div>
           <ul class="exp-bullets">
-            <li>Added Motion Capture feature to an Augmented Reality app — recorded ~<strong>60 million dance movements</strong> in the database.</li>
-            <li>Integrated the native ARKit module into a React Native main project seamlessly.</li>
+            <li><strong>Idenfit</strong> HR app — attendance, shifts, leaves via Bluetooth, NFC, QR, and RFID.</li>
+            <li><strong>Task App & Audit App</strong> — built from scratch, task creation, assignment, inspection flows.</li>
           </ul>
         </div>
       </div>
 
       <div class="exp-item">
         <div class="exp-header">
-          <div>
-            <div class="exp-company">Medyasoft Digital</div>
-            <div class="exp-role">Senior iOS Developer</div>
-          </div>
-          <div class="exp-meta">
-            <span class="exp-date">Jan 2019 — Oct 2019</span>
-            <span class="exp-location">Istanbul, Turkey</span>
-          </div>
+          <div><div class="exp-company">Leo AR</div><div class="exp-role">Senior iOS Developer · Remote</div></div>
+          <div class="exp-meta"><span class="exp-date">Oct 2019 — Mar 2020</span><span class="exp-location">San Francisco, USA</span></div>
         </div>
         <div class="exp-body">
-          <div class="exp-tags">
-            <span class="tag">Auto Layout</span>
-            <span class="tag">Performance Optimization</span>
-            <span class="tag">iPad / iPhone</span>
-          </div>
+          <div class="exp-tags"><span class="tag">ARKit</span><span class="tag">RealityKit</span><span class="tag">Motion Capture API</span><span class="tag">React Native</span></div>
           <ul class="exp-bullets">
-            <li>Developed multiple modules for <strong>Turkish Airlines Cargo Portal (COMIS)</strong>.</li>
-            <li>Optimized memory leaks, improved app performance by <strong>21%</strong>. Universal iPhone/iPad support.</li>
-            <li>Contributed to <strong>Turkish Doco</strong> (Turkish Airlines Meal Reporting) — <strong>25% faster</strong> operations.</li>
+            <li>Motion Capture feature — recorded ~<strong>60 million dance movements</strong>. Integrated native module into React Native project.</li>
           </ul>
         </div>
       </div>
 
       <div class="exp-item">
         <div class="exp-header">
-          <div>
-            <div class="exp-company">Odeal</div>
-            <div class="exp-role">Senior iOS Developer</div>
-          </div>
-          <div class="exp-meta">
-            <span class="exp-date">Jan 2018 — Dec 2018</span>
-            <span class="exp-location">Istanbul, Turkey</span>
-          </div>
+          <div><div class="exp-company">Medyasoft Digital</div><div class="exp-role">Senior iOS Developer</div></div>
+          <div class="exp-meta"><span class="exp-date">Jan 2019 — Oct 2019</span><span class="exp-location">Istanbul, Turkey</span></div>
         </div>
         <div class="exp-body">
-          <div class="exp-tags">
-            <span class="tag">MVC</span>
-            <span class="tag">Crashlytics</span>
-            <span class="tag">Fintech</span>
-          </div>
+          <div class="exp-tags"><span class="tag">Auto Layout</span><span class="tag">iPad / iPhone</span><span class="tag">Performance</span></div>
           <ul class="exp-bullets">
-            <li>Enhanced stability of the financial application by <strong>30%</strong>. Added financial features.</li>
-            <li>Raised Crash-Free user rate from <strong>86% → 99.8%</strong> as reported by Crashlytics.</li>
+            <li><strong>Turkish Airlines Cargo Portal (COMIS)</strong> — multiple modules, memory fixes, <strong>+21%</strong> performance.</li>
+            <li><strong>Turkish Doco</strong> (Meal Reporting) — operations <strong>25% faster</strong>.</li>
           </ul>
         </div>
       </div>
 
       <div class="exp-item">
         <div class="exp-header">
-          <div>
-            <div class="exp-company">Pordiva Mobile System</div>
-            <div class="exp-role">iOS Developer</div>
-          </div>
-          <div class="exp-meta">
-            <span class="exp-date">Jul 2016 — Dec 2017</span>
-            <span class="exp-location">Istanbul, Turkey</span>
-          </div>
+          <div><div class="exp-company">Odeal</div><div class="exp-role">Senior iOS Developer</div></div>
+          <div class="exp-meta"><span class="exp-date">Jan 2018 — Dec 2018</span><span class="exp-location">Istanbul, Turkey</span></div>
         </div>
         <div class="exp-body">
-          <div class="exp-tags">
-            <span class="tag">Swift</span>
-            <span class="tag">Objective-C</span>
-            <span class="tag">XMPP</span>
-            <span class="tag">Realm</span>
-            <span class="tag">MVC</span>
-          </div>
+          <div class="exp-tags"><span class="tag">MVC</span><span class="tag">Crashlytics</span><span class="tag">Fintech</span></div>
           <ul class="exp-bullets">
-            <li>Built <strong>Viatori</strong> (social media) — photo/video sharing, location, messaging via XMPP. Realm gave <strong>55% faster</strong> message loading.</li>
-            <li>Contributed to <strong>ETA</strong> (cargo bid app), <strong>Fenerbahçe SK</strong> social app (Objective-C), <strong>CocaCola One Team</strong> event app.</li>
-            <li>Developed <strong>Turkish Airlines Skylife Magazine</strong> from scratch in 3 months — Mapbox SDK, offline maps with Realm, push notifications via OneSignal.</li>
-            <li>Built <strong>Isim Tescil</strong> (domain purchasing app) from scratch in 1 month — Objective-C.</li>
+            <li>App stability <strong>+30%</strong>. Crash-free rate: <strong>86% → 99.8%</strong>.</li>
           </ul>
         </div>
       </div>
 
       <div class="exp-item">
         <div class="exp-header">
-          <div>
-            <div class="exp-company">Freelance</div>
-            <div class="exp-role">iOS Developer</div>
-          </div>
-          <div class="exp-meta">
-            <span class="exp-date">Apr 2012 — Jul 2016</span>
-            <span class="exp-location">Samsun, Turkey</span>
-          </div>
+          <div><div class="exp-company">Pordiva Mobile System</div><div class="exp-role">iOS Developer</div></div>
+          <div class="exp-meta"><span class="exp-date">Jul 2016 — Dec 2017</span><span class="exp-location">Istanbul, Turkey</span></div>
         </div>
         <div class="exp-body">
-          <div class="exp-tags">
-            <span class="tag">Objective-C</span>
-            <span class="tag">MVC</span>
-            <span class="tag">App Store</span>
-          </div>
+          <div class="exp-tags"><span class="tag">Swift</span><span class="tag">Objective-C</span><span class="tag">XMPP</span><span class="tag">Realm</span><span class="tag">Mapbox</span></div>
           <ul class="exp-bullets">
-            <li>Built multiple independent apps: Patient Tracking, Radio App, Online Exam, Pictionary Diary.</li>
-            <li>Foundation of a 12-year career in native iOS development.</li>
+            <li><strong>Viatori</strong> (social media) — XMPP messaging, Realm <strong>55% faster</strong>. <strong>Fenerbahçe SK</strong> & <strong>CocaCola One Team</strong> apps.</li>
+            <li><strong>Turkish Airlines Skylife Magazine</strong> — from scratch in 3 months. Mapbox, offline maps, OneSignal.</li>
+            <li><strong>Isim Tescil</strong> (domain app) — built from scratch in 1 month.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-header">
+          <div><div class="exp-company">Freelance</div><div class="exp-role">iOS Developer</div></div>
+          <div class="exp-meta"><span class="exp-date">Apr 2012 — Jul 2016</span><span class="exp-location">Samsun, Turkey</span></div>
+        </div>
+        <div class="exp-body">
+          <div class="exp-tags"><span class="tag">Objective-C</span><span class="tag">MVC</span><span class="tag">App Store</span></div>
+          <ul class="exp-bullets">
+            <li>Patient Tracking, Radio App, Online Exam, Pictionary Diary — foundation of a 12-year iOS career.</li>
           </ul>
         </div>
       </div>
@@ -1025,122 +374,33 @@
     </div>
   </section>
 
-  <!-- AI & VIBE CODING -->
   <section class="section" id="ai-projects">
-    <div class="section-header">
-      <span class="section-num">03</span>
-      <h2>AI & Automation Projects</h2>
-      <div class="section-line"></div>
-    </div>
-
+    <div class="section-header"><span class="section-num">03</span><h2>AI & Automation Projects</h2><div class="section-line"></div></div>
     <div class="ai-grid">
-
-      <div class="ai-card">
-        <div class="ai-card-icon">⚡</div>
-        <div class="ai-card-title">n8n AI Content Pipeline</div>
-        <div class="ai-card-desc">
-          End-to-end YouTube content automation — from AI video generation (Veo3, Sora) to auto-upload. Includes hook analysis with OpenAI Vision and multi-sheet Google Sheets queue management.
-        </div>
-        <div class="ai-card-stack">
-          <span class="tag">n8n</span>
-          <span class="tag">Veo3 / Sora</span>
-          <span class="tag">OpenAI Vision</span>
-          <span class="tag">Google Sheets</span>
-        </div>
-      </div>
-
-      <div class="ai-card">
-        <div class="ai-card-icon">🔍</div>
-        <div class="ai-card-title">LegalVector — Lawyer Knowledge Portal</div>
-        <div class="ai-card-desc">
-          RAG-powered legal knowledge base. Lawyers upload documents, users ask questions — Claude answers with source citations. Built with pgvector for semantic search.
-        </div>
-        <div class="ai-card-stack">
-          <span class="tag">Next.js</span>
-          <span class="tag">Supabase</span>
-          <span class="tag">pgvector</span>
-          <span class="tag">Claude API</span>
-        </div>
-      </div>
-
-      <div class="ai-card">
-        <div class="ai-card-icon">🤖</div>
-        <div class="ai-card-title">Vibe Coding & AI-Assisted Development</div>
-        <div class="ai-card-desc">
-          Using Claude, Cursor, and LLM APIs to build full products at speed. Iterative prompt engineering, structured output parsing, multi-agent workflow design.
-        </div>
-        <div class="ai-card-stack">
-          <span class="tag">Claude API</span>
-          <span class="tag">Cursor</span>
-          <span class="tag">Prompt Engineering</span>
-          <span class="tag">MCP</span>
-        </div>
-      </div>
-
-      <div class="ai-card">
-        <div class="ai-card-icon">🏢</div>
-        <div class="ai-card-title">Antigravity — Automation Agency</div>
-        <div class="ai-card-desc">
-          Founder of Antigravity, providing AI-powered automation services to businesses. Focus on content pipelines, workflow automation, and custom LLM integrations.
-        </div>
-        <div class="ai-card-stack">
-          <span class="tag">n8n</span>
-          <span class="tag">LLM APIs</span>
-          <span class="tag">Business Automation</span>
-        </div>
-      </div>
-
+      <div class="ai-card"><div class="ai-card-icon">⚡</div><div class="ai-card-title">n8n AI Content Pipeline</div><div class="ai-card-desc">End-to-end YouTube automation — Veo3/Sora video generation to upload. OpenAI Vision hook analysis, Google Sheets queue.</div><div class="ai-card-stack"><span class="tag">n8n</span><span class="tag">Veo3/Sora</span><span class="tag">OpenAI Vision</span><span class="tag">Google Sheets</span></div></div>
+      <div class="ai-card"><div class="ai-card-icon">🔍</div><div class="ai-card-title">LegalVector — Lawyer Portal</div><div class="ai-card-desc">RAG-powered legal knowledge base. Lawyers upload docs, users ask — Claude answers with citations. pgvector for semantic search.</div><div class="ai-card-stack"><span class="tag">Next.js</span><span class="tag">Supabase</span><span class="tag">pgvector</span><span class="tag">Claude API</span></div></div>
+      <div class="ai-card"><div class="ai-card-icon">🤖</div><div class="ai-card-title">Vibe Coding & AI-Assisted Dev</div><div class="ai-card-desc">Full products at speed with Claude, Cursor, LLM APIs. Structured output parsing, multi-agent workflows, prompt engineering.</div><div class="ai-card-stack"><span class="tag">Claude API</span><span class="tag">Cursor</span><span class="tag">Prompt Eng.</span><span class="tag">MCP</span></div></div>
+      <div class="ai-card"><div class="ai-card-icon">🏢</div><div class="ai-card-title">Antigravity — Automation Agency</div><div class="ai-card-desc">Founder. AI-powered automation services — content pipelines, workflow automation, custom LLM integrations for businesses.</div><div class="ai-card-stack"><span class="tag">n8n</span><span class="tag">LLM APIs</span><span class="tag">Automation</span></div></div>
     </div>
   </section>
 
-  <!-- EDUCATION -->
   <section class="section" id="education">
-    <div class="section-header">
-      <span class="section-num">04</span>
-      <h2>Education</h2>
-      <div class="section-line"></div>
-    </div>
+    <div class="section-header"><span class="section-num">04</span><h2>Education</h2><div class="section-line"></div></div>
     <div class="edu-block">
-      <div>
-        <div class="edu-degree">BSc Applied Physics</div>
-        <div class="edu-school">Kahramanmaraş Sütçü İmam University</div>
-      </div>
+      <div><div class="edu-degree">BSc Applied Physics</div><div class="edu-school">Kahramanmaraş Sütçü İmam University</div></div>
       <div class="edu-year">2003 – 2008</div>
     </div>
   </section>
 
-  <!-- CONTACT -->
   <section class="section" id="contact">
-    <div class="section-header">
-      <span class="section-num">05</span>
-      <h2>Contact</h2>
-      <div class="section-line"></div>
-    </div>
+    <div class="section-header"><span class="section-num">05</span><h2>Contact</h2><div class="section-line"></div></div>
     <div class="contact-grid">
-      <a href="mailto:cmneyp@gmail.com" class="contact-item">
-        <span class="contact-label">Email</span>
-        <span class="contact-value">cmneyp@gmail.com</span>
-      </a>
-      <a href="https://x.com/eyupcimen" target="_blank" class="contact-item">
-        <span class="contact-label">X / Twitter</span>
-        <span class="contact-value">@eyupcimen</span>
-      </a>
-      <a href="https://github.com/eyupcimen" target="_blank" class="contact-item">
-        <span class="contact-label">GitHub</span>
-        <span class="contact-value">github.com/eyupcimen</span>
-      </a>
-      <div class="contact-item">
-        <span class="contact-label">Location</span>
-        <span class="contact-value" style="color: var(--green);">Weil der Stadt, DE 🇩🇪</span>
-      </div>
-      <div class="contact-item">
-        <span class="contact-label">Work Authorization</span>
-        <span class="contact-value" style="color: var(--green);">Residence + Work Permit ✓</span>
-      </div>
-      <div class="contact-item">
-        <span class="contact-label">Availability</span>
-        <span class="contact-value" style="color: var(--green);">Immediate · No notice period</span>
-      </div>
+      <a href="mailto:cmneyp@gmail.com" class="contact-item"><span class="contact-label">Email</span><span class="contact-value">cmneyp@gmail.com</span></a>
+      <a href="https://x.com/eyupcimen" target="_blank" class="contact-item"><span class="contact-label">X / Twitter</span><span class="contact-value">@eyupcimen</span></a>
+      <a href="https://github.com/eyupcimen" target="_blank" class="contact-item"><span class="contact-label">GitHub</span><span class="contact-value">github.com/eyupcimen</span></a>
+      <div class="contact-item"><span class="contact-label">Location</span><span class="contact-value" style="color:var(--green)">Weil der Stadt, DE 🇩🇪</span></div>
+      <div class="contact-item"><span class="contact-label">Work Authorization</span><span class="contact-value" style="color:var(--green)">Residence + Work Permit ✓</span></div>
+      <div class="contact-item"><span class="contact-label">Availability</span><span class="contact-value" style="color:var(--green)">Immediate · No notice period</span></div>
     </div>
   </section>
 
@@ -1152,6 +412,292 @@
     <span class="footer-text">eyupcimen.github.io</span>
   </div>
 </footer>
+
+<script>
+const NODES = [
+  // iOS Core
+  {id:'swift',      label:'Swift',              cat:'ios', w:5},
+  {id:'swiftui',    label:'SwiftUI',            cat:'ios', w:4},
+  {id:'uikit',      label:'UIKit',              cat:'ios', w:4},
+  {id:'objc',       label:'Objective-C',        cat:'ios', w:3},
+  {id:'arkit',      label:'ARKit',              cat:'ios', w:2},
+  {id:'realitykit', label:'RealityKit',         cat:'ios', w:2},
+  {id:'rxswift',    label:'RxSwift',            cat:'ios', w:2},
+  {id:'combine',    label:'Combine',            cat:'ios', w:2},
+  {id:'realm',      label:'Realm',              cat:'ios', w:2},
+  {id:'coredata',   label:'Core Data',          cat:'ios', w:2},
+  {id:'gcd',        label:'GCD / Multithreading',cat:'ios',w:3},
+  {id:'spm',        label:'Swift Package Mgr',  cat:'ios', w:3},
+  {id:'testflight', label:'TestFlight',         cat:'ios', w:2},
+  {id:'xmpp',       label:'XMPP Protocol',      cat:'ios', w:2},
+  {id:'mapbox',     label:'Mapbox SDK',         cat:'ios', w:2},
+  {id:'avfoundation',label:'AVFoundation',      cat:'ios', w:2},
+  {id:'onesignal',  label:'OneSignal',          cat:'ios', w:1},
+  {id:'motcap',     label:'Motion Capture',     cat:'ios', w:2},
+  // Architecture & Patterns
+  {id:'mvvm',       label:'MVVM',               cat:'skill', w:4},
+  {id:'vip',        label:'Clean Swift (VIP)',   cat:'skill', w:3},
+  {id:'mvc',        label:'MVC',                cat:'skill', w:2},
+  {id:'pop',        label:'Protocol-Oriented',  cat:'skill', w:3},
+  {id:'oop',        label:'OOP',                cat:'skill', w:2},
+  // Networking & Backend
+  {id:'restapi',    label:'REST API',            cat:'skill', w:3},
+  {id:'graphql',    label:'GraphQL',             cat:'skill', w:2},
+  {id:'alamofire',  label:'Alamofire',           cat:'skill', w:2},
+  {id:'moya',       label:'Moya',               cat:'skill', w:2},
+  // DevOps & Tools
+  {id:'firebase',   label:'Firebase',            cat:'skill', w:3},
+  {id:'crashlytics',label:'Crashlytics',         cat:'skill', w:2},
+  {id:'bitrise',    label:'Bitrise CI/CD',       cat:'skill', w:3},
+  {id:'git',        label:'Git',                cat:'skill', w:2},
+  {id:'xcode',      label:'Xcode',              cat:'skill', w:2},
+  {id:'analytics',  label:'Google Analytics',   cat:'skill', w:2},
+  // Hardware / Special
+  {id:'nfc',        label:'NFC / BLE / QR',     cat:'skill', w:2},
+  {id:'reactnat',   label:'React Native',       cat:'skill', w:2},
+  // AI / Automation
+  {id:'claude',     label:'Claude API',          cat:'ai', w:4},
+  {id:'openai',     label:'OpenAI',              cat:'ai', w:3},
+  {id:'n8n',        label:'n8n',                cat:'ai', w:4},
+  {id:'vibe',       label:'Vibe Coding',         cat:'ai', w:3},
+  {id:'prompt',     label:'Prompt Engineering',  cat:'ai', w:3},
+  {id:'rag',        label:'RAG',                cat:'ai', w:3},
+  {id:'veo3',       label:'Veo3 / Sora',         cat:'ai', w:2},
+  {id:'nextjs',     label:'Next.js',             cat:'ai', w:2},
+  {id:'supabase',   label:'Supabase',            cat:'ai', w:2},
+  {id:'pgvector',   label:'pgvector',            cat:'ai', w:2},
+  // Companies
+  {id:'antigrav',   label:'Antigravity',         cat:'company', w:5},
+  {id:'ozan',       label:'Ozan SuperApp',       cat:'company', w:4},
+  {id:'roofstacks', label:'Roofstacks',          cat:'company', w:3},
+  {id:'ipucu',      label:'Ipucu Software',      cat:'company', w:2},
+  {id:'globme',     label:'Globme',              cat:'company', w:2},
+  {id:'leoar',      label:'Leo AR',              cat:'company', w:2},
+  {id:'medyasoft',  label:'Medyasoft Digital',   cat:'company', w:2},
+  {id:'odeal',      label:'Odeal',               cat:'company', w:2},
+  {id:'pordiva',    label:'Pordiva',             cat:'company', w:2},
+  // Projects
+  {id:'legalvec',   label:'LegalVector',         cat:'project', w:4},
+  {id:'pipeline',   label:'Content Pipeline',    cat:'project', w:3},
+  {id:'idenfit',    label:'Idenfit',             cat:'project', w:3},
+  {id:'bilet',      label:'Bilet Dukkani',       cat:'project', w:2},
+  {id:'skylife',    label:'Skylife Magazine',    cat:'project', w:2},
+  {id:'comis',      label:'TK Cargo (COMIS)',    cat:'project', w:2},
+  {id:'fups',       label:'Fups Payment',        cat:'project', w:2},
+];
+
+const EDGES = [
+  // Swift ecosystem
+  ['swift','swiftui'],['swift','uikit'],['swift','objc'],['swift','spm'],['swift','gcd'],
+  ['swiftui','ozan'],['swiftui','mvvm'],['uikit','rxswift'],['uikit','realm'],['uikit','combine'],
+  ['arkit','realitykit'],['arkit','leoar'],['arkit','motcap'],
+  ['realm','gcd'],['realm','xmpp'],['coredata','realm'],
+  ['rxswift','roofstacks'],['combine','swift'],
+  // Architecture links
+  ['mvvm','ozan'],['mvvm','globme'],['mvvm','pop'],
+  ['vip','roofstacks'],['mvc','pordiva'],['mvc','odeal'],['pop','oop'],
+  // Networking
+  ['restapi','alamofire'],['restapi','moya'],['graphql','globme'],
+  ['alamofire','ozan'],['moya','roofstacks'],['moya','globme'],
+  // DevOps
+  ['firebase','ozan'],['firebase','roofstacks'],['firebase','crashlytics'],
+  ['bitrise','ozan'],['bitrise','roofstacks'],['git','bitrise'],
+  ['crashlytics','odeal'],['analytics','roofstacks'],
+  // Companies → projects
+  ['ozan','spm'],['ozan','firebase'],['ozan','bitrise'],
+  ['roofstacks','bilet'],['ipucu','fups'],['ipucu','xmpp'],
+  ['globme','idenfit'],['globme','nfc'],['globme','avfoundation'],
+  ['leoar','arkit'],['leoar','realitykit'],['leoar','motcap'],['leoar','reactnat'],
+  ['medyasoft','comis'],['medyasoft','xcode'],
+  ['odeal','mvc'],['pordiva','skylife'],['pordiva','mapbox'],['pordiva','onesignal'],
+  // Hardware
+  ['nfc','idenfit'],
+  // AI / Automation
+  ['antigrav','n8n'],['antigrav','pipeline'],['antigrav','legalvec'],['antigrav','vibe'],
+  ['n8n','veo3'],['n8n','pipeline'],['n8n','openai'],
+  ['claude','legalvec'],['claude','rag'],['claude','prompt'],
+  ['legalvec','nextjs'],['legalvec','supabase'],['legalvec','pgvector'],['legalvec','rag'],
+  ['openai','veo3'],['openai','prompt'],
+  ['vibe','prompt'],['vibe','claude'],
+  ['rag','pgvector'],['rag','supabase'],
+  ['nextjs','supabase'],['pgvector','supabase'],
+  // Cross-links
+  ['fups','xmpp'],['fups','realm'],['skylife','mapbox'],['skylife','onesignal'],
+  ['comis','xcode'],['idenfit','globme'],['bilet','roofstacks'],
+];
+
+const CAT_COLOR = {
+  ios:     '#4f9eff',
+  ai:      '#4ade80',
+  company: '#f472b6',
+  skill:   '#fb923c',
+  project: '#a78bfa',
+};
+
+const canvas = document.getElementById('graph-canvas');
+const ctx = canvas.getContext('2d');
+const tooltip = document.getElementById('graph-tooltip');
+const ttName = document.getElementById('tt-name');
+const ttCat  = document.getElementById('tt-cat');
+
+let W, H, dpr;
+function resize() {
+  dpr = window.devicePixelRatio || 1;
+  const rect = canvas.getBoundingClientRect();
+  W = rect.width; H = rect.height;
+  canvas.width  = W * dpr;
+  canvas.height = H * dpr;
+  ctx.scale(dpr, dpr);
+}
+resize();
+
+const nodes = NODES.map((n, i) => {
+  const angle = (i / NODES.length) * Math.PI * 2;
+  const r = Math.min(W, H) * 0.36;
+  return { ...n, x: W/2 + Math.cos(angle)*r, y: H/2 + Math.sin(angle)*r, vx:0, vy:0, radius: 3 + n.w*2.2, pulse: Math.random()*Math.PI*2 };
+});
+
+const nodeMap = {};
+nodes.forEach(n => nodeMap[n.id] = n);
+const edges = EDGES.map(([a,b]) => ({s:nodeMap[a],t:nodeMap[b]})).filter(e => e.s && e.t);
+const adj = {};
+nodes.forEach(n => adj[n.id] = new Set());
+edges.forEach(e => { adj[e.s.id].add(e.t.id); adj[e.t.id].add(e.s.id); });
+
+const REPEL=3000, ATTRACT=0.028, CENTER=0.01, DAMP=0.75, IDEAL=75;
+
+function tick() {
+  for (let i=0;i<nodes.length;i++) {
+    for (let j=i+1;j<nodes.length;j++) {
+      const a=nodes[i],b=nodes[j];
+      const dx=b.x-a.x, dy=b.y-a.y;
+      const d2=dx*dx+dy*dy+0.01, d=Math.sqrt(d2);
+      const f=REPEL/d2, fx=f*dx/d, fy=f*dy/d;
+      a.vx-=fx; a.vy-=fy; b.vx+=fx; b.vy+=fy;
+    }
+  }
+  edges.forEach(e => {
+    const dx=e.t.x-e.s.x, dy=e.t.y-e.s.y;
+    const d=Math.sqrt(dx*dx+dy*dy)||1;
+    const f=(d-IDEAL)*ATTRACT, fx=f*dx/d, fy=f*dy/d;
+    e.s.vx+=fx; e.s.vy+=fy; e.t.vx-=fx; e.t.vy-=fy;
+  });
+  nodes.forEach(n => {
+    n.vx+=(W/2-n.x)*CENTER; n.vy+=(H/2-n.y)*CENTER;
+    n.vx*=DAMP; n.vy*=DAMP;
+    n.x+=n.vx; n.y+=n.vy;
+    n.pulse+=0.02;
+  });
+}
+
+let vx=0, vy=0, vz=1;
+let dragging=false, ds=null, vs=null;
+
+canvas.addEventListener('wheel', e => {
+  e.preventDefault();
+  vz = Math.min(2.5, Math.max(0.3, vz*(e.deltaY<0?1.08:0.93)));
+}, {passive:false});
+
+canvas.addEventListener('mousedown', e => { if(e.button!==0)return; dragging=true; ds={x:e.clientX,y:e.clientY}; vs={x:vx,y:vy}; });
+window.addEventListener('mouseup', ()=>{ dragging=false; });
+window.addEventListener('mousemove', e => {
+  if(dragging&&ds){ vx=vs.x+(e.clientX-ds.x); vy=vs.y+(e.clientY-ds.y); }
+  handleHover(e);
+});
+canvas.addEventListener('touchstart', e=>{ if(e.touches.length===1){dragging=true;ds={x:e.touches[0].clientX,y:e.touches[0].clientY};vs={x:vx,y:vy};}},{passive:true});
+canvas.addEventListener('touchmove', e=>{ if(dragging&&e.touches.length===1){vx=vs.x+(e.touches[0].clientX-ds.x);vy=vs.y+(e.touches[0].clientY-ds.y);}},{passive:true});
+canvas.addEventListener('touchend', ()=>{ dragging=false; });
+
+function toWorld(sx,sy){
+  const rect=canvas.getBoundingClientRect();
+  return {x:(sx-rect.left-W/2-vx)/vz+W/2, y:(sy-rect.top-H/2-vy)/vz+H/2};
+}
+
+let hovered=null;
+function handleHover(e) {
+  const wp=toWorld(e.clientX,e.clientY);
+  let found=null;
+  for(const n of nodes){const dx=n.x-wp.x,dy=n.y-wp.y;if(Math.sqrt(dx*dx+dy*dy)<n.radius+8){found=n;break;}}
+  if(found!==hovered){
+    hovered=found;
+    if(found){
+      ttName.textContent=found.label;
+      ttCat.textContent=found.cat+' · '+[...adj[found.id]].length+' connections';
+      ttCat.style.color=CAT_COLOR[found.cat];
+      tooltip.classList.add('visible');
+    } else { tooltip.classList.remove('visible'); }
+  }
+  if(hovered){
+    tooltip.style.left=Math.min(e.clientX+14,window.innerWidth-200)+'px';
+    tooltip.style.top=Math.min(e.clientY-10,window.innerHeight-60)+'px';
+  }
+}
+
+function draw(){
+  ctx.clearRect(0,0,W,H);
+  ctx.save();
+  ctx.translate(W/2+vx,H/2+vy);
+  ctx.scale(vz,vz);
+  ctx.translate(-W/2,-H/2);
+  const hid=hovered?.id;
+
+  edges.forEach(e=>{
+    const active=hid&&(e.s.id===hid||e.t.id===hid);
+    ctx.beginPath(); ctx.moveTo(e.s.x,e.s.y); ctx.lineTo(e.t.x,e.t.y);
+    if(active){ctx.strokeStyle=CAT_COLOR[hovered.cat]+'bb';ctx.lineWidth=1.5;}
+    else if(hid){ctx.strokeStyle='rgba(255,255,255,0.04)';ctx.lineWidth=0.5;}
+    else{ctx.strokeStyle='rgba(255,255,255,0.1)';ctx.lineWidth=0.6;}
+    ctx.stroke();
+  });
+
+  nodes.forEach(n=>{
+    const isHov=n.id===hid, isNeighbor=hid&&adj[hid].has(n.id), dimmed=hid&&!isHov&&!isNeighbor;
+    const pulse=Math.sin(n.pulse)*0.5+0.5;
+    const r=n.radius+(isHov?2+pulse*1.5:0);
+    const color=CAT_COLOR[n.cat];
+
+    if(isHov||isNeighbor){
+      const gr=r+12+pulse*4;
+      const g=ctx.createRadialGradient(n.x,n.y,r*0.4,n.x,n.y,gr);
+      g.addColorStop(0,color+'44'); g.addColorStop(1,color+'00');
+      ctx.beginPath(); ctx.arc(n.x,n.y,gr,0,Math.PI*2); ctx.fillStyle=g; ctx.globalAlpha=1; ctx.fill();
+    } else if(!hid){
+      const ag=ctx.createRadialGradient(n.x,n.y,0,n.x,n.y,r+6);
+      ag.addColorStop(0,color+'28'); ag.addColorStop(1,color+'00');
+      ctx.beginPath(); ctx.arc(n.x,n.y,r+6,0,Math.PI*2); ctx.fillStyle=ag; ctx.fill();
+    }
+
+    ctx.globalAlpha=dimmed?0.12:1;
+    ctx.beginPath(); ctx.arc(n.x,n.y,r,0,Math.PI*2); ctx.fillStyle=color; ctx.fill();
+    ctx.beginPath(); ctx.arc(n.x,n.y-r*0.25,r*0.4,0,Math.PI*2); ctx.fillStyle='rgba(255,255,255,0.2)'; ctx.fill();
+
+    if(isHov){
+      ctx.beginPath(); ctx.arc(n.x,n.y,r+3+pulse*2,0,Math.PI*2);
+      ctx.strokeStyle=color+'99'; ctx.lineWidth=1; ctx.stroke();
+    }
+    ctx.globalAlpha=1;
+
+    if(vz>0.45){
+      const la=dimmed?0.1:(isHov?1:(hid?0.4:0.58));
+      ctx.globalAlpha=la;
+      ctx.font=isHov?`600 ${10/vz*0.85}px 'Syne',sans-serif`:`300 ${9/vz*0.85}px 'DM Mono',monospace`;
+      ctx.fillStyle='#fff'; ctx.textAlign='center';
+      ctx.fillText(n.label, n.x, n.y+r+12/vz);
+      ctx.globalAlpha=1;
+    }
+  });
+  ctx.restore();
+}
+
+let frame=0;
+function loop(){ if(frame<260||frame%2===0) tick(); draw(); frame++; requestAnimationFrame(loop); }
+loop();
+
+window.addEventListener('resize',()=>{
+  resize(); vx=0; vy=0;
+  nodes.forEach((n,i)=>{ const a=(i/nodes.length)*Math.PI*2; n.x=W/2+Math.cos(a)*Math.min(W,H)*0.36; n.y=H/2+Math.sin(a)*Math.min(W,H)*0.36; });
+});
+</script>
 
 </body>
 </html>
