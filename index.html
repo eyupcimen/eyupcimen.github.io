@@ -1,0 +1,1157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eyup Cimen — Senior iOS Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0a;
+    --bg2: #111111;
+    --bg3: #1a1a1a;
+    --border: rgba(255,255,255,0.08);
+    --border2: rgba(255,255,255,0.14);
+    --accent: #4f9eff;
+    --accent2: #ff6b35;
+    --text: #f0f0f0;
+    --text2: #888;
+    --text3: #555;
+    --mono: 'DM Mono', monospace;
+    --sans: 'Syne', sans-serif;
+    --green: #3ecf8e;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--mono);
+    font-size: 14px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* Grid background */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(79,158,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(79,158,255,0.03) 1px, transparent 1px);
+    background-size: 48px 48px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Glow orb */
+  body::after {
+    content: '';
+    position: fixed;
+    top: -200px;
+    right: -200px;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(79,158,255,0.06) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 24px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(10,10,10,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  nav .inner {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 24px;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-logo {
+    font-family: var(--sans);
+    font-weight: 800;
+    font-size: 15px;
+    color: var(--text);
+    letter-spacing: -0.02em;
+  }
+
+  .nav-logo span { color: var(--accent); }
+
+  .nav-links {
+    display: flex;
+    gap: 24px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--text2);
+    text-decoration: none;
+    font-size: 12px;
+    letter-spacing: 0.05em;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--text); }
+
+  /* HERO */
+  .hero {
+    padding: 140px 0 80px;
+    position: relative;
+  }
+
+  .hero-label {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .hero-label::before {
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  h1 {
+    font-family: var(--sans);
+    font-size: clamp(42px, 7vw, 72px);
+    font-weight: 800;
+    line-height: 1.0;
+    letter-spacing: -0.03em;
+    margin-bottom: 12px;
+    color: var(--text);
+  }
+
+  h1 .dim { color: var(--text3); }
+  h1 .acc { color: var(--accent); }
+
+  .hero-sub {
+    font-size: 15px;
+    color: var(--text2);
+    max-width: 520px;
+    margin-bottom: 32px;
+    line-height: 1.8;
+  }
+
+  .hero-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 40px;
+  }
+
+  .badge {
+    padding: 5px 12px;
+    border: 1px solid var(--border2);
+    border-radius: 2px;
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    color: var(--text2);
+    background: var(--bg2);
+  }
+
+  .badge.green { border-color: rgba(62,207,142,0.3); color: var(--green); background: rgba(62,207,142,0.05); }
+  .badge.blue { border-color: rgba(79,158,255,0.3); color: var(--accent); background: rgba(79,158,255,0.05); }
+
+  .hero-cta {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    padding: 10px 20px;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    border-radius: 2px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: #000;
+    border: none;
+    font-weight: 500;
+  }
+
+  .btn-primary:hover { background: #74b3ff; }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--border2);
+  }
+
+  .btn-outline:hover { border-color: var(--text2); }
+
+  /* STATS BAR */
+  .stats-bar {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    margin-bottom: 80px;
+    overflow: hidden;
+  }
+
+  .stat {
+    padding: 20px 24px;
+    border-right: 1px solid var(--border);
+    position: relative;
+  }
+
+  .stat:last-child { border-right: none; }
+
+  .stat-num {
+    font-family: var(--sans);
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--text);
+    letter-spacing: -0.03em;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .stat-num span { color: var(--accent); font-size: 18px; }
+  .stat-label { font-size: 11px; color: var(--text3); letter-spacing: 0.04em; }
+
+  /* SECTION HEADERS */
+  .section { margin-bottom: 80px; }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+
+  .section-num {
+    font-size: 11px;
+    color: var(--text3);
+    letter-spacing: 0.1em;
+  }
+
+  h2 {
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text2);
+  }
+
+  .section-line {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* SKILLS */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .skill-item {
+    background: var(--bg);
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: background 0.2s;
+  }
+
+  .skill-item:hover { background: var(--bg2); }
+
+  .skill-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    flex-shrink: 0;
+  }
+
+  .skill-dot.orange { background: var(--accent2); }
+  .skill-dot.green { background: var(--green); }
+
+  .skill-name {
+    font-size: 13px;
+    color: var(--text);
+  }
+
+  .skill-level {
+    font-size: 10px;
+    color: var(--text3);
+    margin-left: auto;
+    letter-spacing: 0.05em;
+  }
+
+  /* EXPERIENCE */
+  .exp-list { display: flex; flex-direction: column; gap: 2px; }
+
+  .exp-item {
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+
+  .exp-item:hover { border-color: var(--border2); }
+
+  .exp-header {
+    padding: 20px 24px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 12px;
+    cursor: pointer;
+    align-items: start;
+  }
+
+  .exp-company {
+    font-family: var(--sans);
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -0.01em;
+    margin-bottom: 4px;
+  }
+
+  .exp-role {
+    font-size: 12px;
+    color: var(--accent);
+    letter-spacing: 0.03em;
+  }
+
+  .exp-meta {
+    text-align: right;
+  }
+
+  .exp-date {
+    font-size: 11px;
+    color: var(--text3);
+    letter-spacing: 0.04em;
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .exp-location {
+    font-size: 11px;
+    color: var(--text3);
+  }
+
+  .exp-body {
+    padding: 0 24px 20px;
+    border-top: 1px solid var(--border);
+  }
+
+  .exp-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 14px;
+    padding-top: 16px;
+  }
+
+  .tag {
+    padding: 3px 8px;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    font-size: 10px;
+    color: var(--text2);
+    letter-spacing: 0.04em;
+  }
+
+  .exp-bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .exp-bullets li {
+    font-size: 13px;
+    color: var(--text2);
+    padding-left: 16px;
+    position: relative;
+    line-height: 1.6;
+  }
+
+  .exp-bullets li::before {
+    content: '›';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+  }
+
+  .exp-bullets li strong {
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  /* AI / VIBE section */
+  .ai-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 2px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .ai-card {
+    background: var(--bg);
+    padding: 24px;
+    transition: background 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .ai-card:hover { background: var(--bg2); }
+
+  .ai-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 2px;
+    height: 100%;
+    background: var(--accent);
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  .ai-card:hover::before { opacity: 1; }
+
+  .ai-card-icon {
+    font-size: 20px;
+    margin-bottom: 12px;
+  }
+
+  .ai-card-title {
+    font-family: var(--sans);
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+  }
+
+  .ai-card-desc {
+    font-size: 12px;
+    color: var(--text2);
+    line-height: 1.7;
+  }
+
+  .ai-card-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-top: 12px;
+  }
+
+  /* EDUCATION */
+  .edu-block {
+    padding: 20px 24px;
+    border: 1px solid var(--border);
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 12px;
+    align-items: center;
+  }
+
+  .edu-degree {
+    font-family: var(--sans);
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 4px;
+    letter-spacing: -0.01em;
+  }
+
+  .edu-school { font-size: 13px; color: var(--text2); }
+  .edu-year { font-size: 12px; color: var(--text3); text-align: right; }
+
+  /* CONTACT */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 2px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .contact-item {
+    background: var(--bg);
+    padding: 20px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    transition: background 0.2s;
+    text-decoration: none;
+  }
+
+  .contact-item:hover { background: var(--bg2); }
+
+  .contact-label {
+    font-size: 10px;
+    color: var(--text3);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .contact-value {
+    font-size: 13px;
+    color: var(--accent);
+  }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 24px 0;
+    margin-top: 40px;
+  }
+
+  footer .inner {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-text {
+    font-size: 11px;
+    color: var(--text3);
+  }
+
+  .footer-text span { color: var(--accent2); }
+
+  /* CURSOR BLINK */
+  .blink {
+    display: inline-block;
+    width: 3px;
+    height: 0.85em;
+    background: var(--accent);
+    margin-left: 4px;
+    vertical-align: middle;
+    animation: blink 1s step-end infinite;
+  }
+
+  @keyframes blink { 50% { opacity: 0; } }
+
+  /* ANIMATIONS */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeIn 0.6s ease forwards;
+  }
+
+  @keyframes fadeIn {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .fade-in:nth-child(1) { animation-delay: 0.1s; }
+  .fade-in:nth-child(2) { animation-delay: 0.2s; }
+  .fade-in:nth-child(3) { animation-delay: 0.3s; }
+  .fade-in:nth-child(4) { animation-delay: 0.4s; }
+  .fade-in:nth-child(5) { animation-delay: 0.5s; }
+
+  /* RESPONSIVE */
+  @media (max-width: 640px) {
+    .stats-bar { grid-template-columns: repeat(2, 1fr); }
+    .nav-links { display: none; }
+    h1 { font-size: 38px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="inner">
+    <div class="nav-logo">eyup<span>.</span>cimen</div>
+    <ul class="nav-links">
+      <li><a href="#skills">skills</a></li>
+      <li><a href="#experience">experience</a></li>
+      <li><a href="#ai-projects">ai & automation</a></li>
+      <li><a href="#contact">contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-label fade-in">available for hire · Germany</div>
+    <h1 class="fade-in">
+      Eyup<br>
+      <span class="dim">Cimen</span><span class="acc">.</span>
+      <span class="blink"></span>
+    </h1>
+    <p class="hero-sub fade-in">
+      Senior iOS Developer with 12+ years of experience building production-grade mobile applications — from fintech superapps to augmented reality. Now also building AI-powered automation systems and vibe-coding products with LLMs.
+    </p>
+    <div class="hero-badges fade-in">
+      <span class="badge green">● Open to work</span>
+      <span class="badge blue">No notice period</span>
+      <span class="badge">📍 Weil der Stadt, BW</span>
+      <span class="badge">🇩🇪 Work permit ✓</span>
+      <span class="badge">Swift · SwiftUI · Objective-C</span>
+    </div>
+    <div class="hero-cta fade-in">
+      <a href="mailto:cmneyp@gmail.com" class="btn btn-primary">→ Contact me</a>
+      <a href="https://github.com/eyupcimen" target="_blank" class="btn btn-outline">GitHub ↗</a>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats-bar">
+    <div class="stat">
+      <div class="stat-num">12<span>+</span></div>
+      <div class="stat-label">years experience</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">15<span>+</span></div>
+      <div class="stat-label">apps shipped</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">99<span>.8%</span></div>
+      <div class="stat-label">crash-free rate</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">5<span>+</span></div>
+      <div class="stat-label">industries</div>
+    </div>
+  </div>
+
+  <!-- SKILLS -->
+  <section class="section" id="skills">
+    <div class="section-header">
+      <span class="section-num">01</span>
+      <h2>Technical Skills</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-item">
+        <div class="skill-dot"></div>
+        <span class="skill-name">Swift</span>
+        <span class="skill-level">expert</span>
+      </div>
+      <div class="skill-item">
+        <div class="skill-dot"></div>
+        <span class="skill-name">SwiftUI</span>
+        <span class="skill-level">expert</span>
+      </div>
+      <div class="skill-item">
+        <div class="skill-dot"></div>
+        <span class="skill-name">UIKit</span>
+        <span class="skill-level">expert</span>
+      </div>
+      <div class="skill-item">
+        <div class="skill-dot"></div>
+        <span class="skill-name">Objective-C</span>
+        <span class="skill-level">expert</span>
+      </div>
+      <div class="skill-item">
+        <div class="skill-dot"></div>
+        <span class="skill-name">MVVM / VIP / MVC</span>
+        <span class="skill-level">expert</span>
+      </div>
+      <div class="skill-item">
+        <div class="skill-dot"></div>
+        <span class="skill-name">Protocol-Oriented Programming</span>
+        <span class="skill-level">expert</span>
+      </div>
+      <div class="skill-item">
+        <div class="skill-dot"></div>
+        <span class="skill-name">Swift Package Manager</span>
+        <span class="skill-level">advanced</span>
+      </div>
+      <div class="skill-item">
+        <div class="skill-dot"></div>
+        <span class="skill-name">Async/Await · GCD</span>
+        <span class="skill-level">advanced</span>
+      </div>
+      <div class="skill-item">
+        <div class="skill-dot"></div>
+        <span class="skill-name">ARKit · RealityKit</span>
+        <span class="skill-level">advanced</span>
+      </div>
+      <div class="skill-item">
+        <div class="skill-dot"></div>
+        <span class="skill-name">Firebase · Crashlytics</span>
+        <span class="skill-level">advanced</span>
+      </div>
+      <div class="skill-item">
+        <div class="skill-dot"></div>
+        <span class="skill-name">RxSwift · Combine</span>
+        <span class="skill-level">advanced</span>
+      </div>
+      <div class="skill-item">
+        <div class="skill-dot"></div>
+        <span class="skill-name">Realm · CoreData</span>
+        <span class="skill-level">advanced</span>
+      </div>
+      <div class="skill-item">
+        <div class="skill-dot"></div>
+        <span class="skill-name">REST API · GraphQL</span>
+        <span class="skill-level">advanced</span>
+      </div>
+      <div class="skill-item">
+        <div class="skill-dot"></div>
+        <span class="skill-name">Bitrise CI/CD</span>
+        <span class="skill-level">advanced</span>
+      </div>
+      <div class="skill-item">
+        <div class="skill-dot orange"></div>
+        <span class="skill-name">n8n Automation</span>
+        <span class="skill-level">advanced</span>
+      </div>
+      <div class="skill-item">
+        <div class="skill-dot orange"></div>
+        <span class="skill-name">Next.js · TypeScript</span>
+        <span class="skill-level">intermediate</span>
+      </div>
+      <div class="skill-item">
+        <div class="skill-dot orange"></div>
+        <span class="skill-name">Supabase · pgvector</span>
+        <span class="skill-level">intermediate</span>
+      </div>
+      <div class="skill-item">
+        <div class="skill-dot green"></div>
+        <span class="skill-name">LLM Prompt Engineering</span>
+        <span class="skill-level">advanced</span>
+      </div>
+      <div class="skill-item">
+        <div class="skill-dot green"></div>
+        <span class="skill-name">Claude API · OpenAI API</span>
+        <span class="skill-level">advanced</span>
+      </div>
+      <div class="skill-item">
+        <div class="skill-dot green"></div>
+        <span class="skill-name">Vibe Coding / AI-assisted dev</span>
+        <span class="skill-level">advanced</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section class="section" id="experience">
+    <div class="section-header">
+      <span class="section-num">02</span>
+      <h2>Experience</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="exp-list">
+
+      <div class="exp-item">
+        <div class="exp-header">
+          <div>
+            <div class="exp-company">Ozan SuperApp</div>
+            <div class="exp-role">Senior iOS Developer</div>
+          </div>
+          <div class="exp-meta">
+            <span class="exp-date">Apr 2022 — Jun 2023</span>
+            <span class="exp-location">Istanbul, Turkey</span>
+          </div>
+        </div>
+        <div class="exp-body">
+          <div class="exp-tags">
+            <span class="tag">SwiftUI</span>
+            <span class="tag">MVVM</span>
+            <span class="tag">Swift Package Manager</span>
+            <span class="tag">Firebase</span>
+            <span class="tag">Alamofire</span>
+            <span class="tag">Bitrise CI/CD</span>
+          </div>
+          <ul class="exp-bullets">
+            <li>Implemented <strong>8 major features</strong> — Hotel Booking, Ticket Buying, Bill Payment, Gaming, Split Payment, Cashback, and ReceiptScan — using SwiftUI.</li>
+            <li>Modularized the project with Swift Package Manager, improving app performance by <strong>20%</strong> and reducing build time by <strong>30%</strong>.</li>
+            <li>Optimized CI/CD with Bitrise and conducted code reviews, lowering production bugs by <strong>17%</strong>.</li>
+            <li>Applied Protocol-Oriented Programming and MVVM architecture throughout.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-header">
+          <div>
+            <div class="exp-company">Roofstacks</div>
+            <div class="exp-role">Senior iOS Developer</div>
+          </div>
+          <div class="exp-meta">
+            <span class="exp-date">Oct 2021 — Apr 2022</span>
+            <span class="exp-location">Istanbul, Turkey</span>
+          </div>
+        </div>
+        <div class="exp-body">
+          <div class="exp-tags">
+            <span class="tag">Clean Swift (VIP)</span>
+            <span class="tag">RxSwift</span>
+            <span class="tag">Realm</span>
+            <span class="tag">Firebase Crashlytics</span>
+            <span class="tag">Moya</span>
+          </div>
+          <ul class="exp-bullets">
+            <li>Developed and released <strong>Bilet Dukkani</strong>, a low-cost flight ticket purchasing app.</li>
+            <li>Introduced the Wallet feature, speeding up ticket purchasing by <strong>35%</strong>.</li>
+            <li>Integrated Google Analytics for business team, improved app review cycle by <strong>23%</strong>.</li>
+            <li>Eliminated crashes and memory leaks using Firebase Crashlytics — boosted app performance by <strong>11%</strong>.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-header">
+          <div>
+            <div class="exp-company">Ipucu Software</div>
+            <div class="exp-role">Senior iOS Developer</div>
+          </div>
+          <div class="exp-meta">
+            <span class="exp-date">Dec 2020 — Oct 2021</span>
+            <span class="exp-location">Istanbul, Turkey</span>
+          </div>
+        </div>
+        <div class="exp-body">
+          <div class="exp-tags">
+            <span class="tag">XMPP Protocol</span>
+            <span class="tag">Realm</span>
+            <span class="tag">Multithreading / GCD</span>
+            <span class="tag">POP / OOP</span>
+          </div>
+          <ul class="exp-bullets">
+            <li>Built a real-time messaging module (similar to WhatsApp/Signal) inside Fups, a payment application, using XMPP Protocol.</li>
+            <li>Introduced Realm database — achieved <strong>45% faster message loading time</strong>.</li>
+            <li>Integrated in-chat financial features: send/request money, family accounts, shared payments.</li>
+            <li>Used Multithreading (GCD, Operation Queues, async tasks) for smooth performance.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-header">
+          <div>
+            <div class="exp-company">Globme</div>
+            <div class="exp-role">Senior iOS Developer</div>
+          </div>
+          <div class="exp-meta">
+            <span class="exp-date">Mar 2020 — Dec 2021</span>
+            <span class="exp-location">Istanbul, Turkey</span>
+          </div>
+        </div>
+        <div class="exp-body">
+          <div class="exp-tags">
+            <span class="tag">MVVM</span>
+            <span class="tag">GraphQL</span>
+            <span class="tag">Moya</span>
+            <span class="tag">Firebase</span>
+            <span class="tag">NFC / BLE / QR</span>
+            <span class="tag">AVFoundation</span>
+          </div>
+          <ul class="exp-bullets">
+            <li>Developed <strong>Idenfit</strong> — a cutting-edge HR management application with attendance, shifts, leaves, and advances modules.</li>
+            <li>Implemented Bluetooth, NFC, QR, and RFID-based employee identification technologies.</li>
+            <li>Built <strong>Task App & Audit App</strong> from scratch — task creation, worker assignment, inspection flows.</li>
+            <li>Optimized performance using Multithreading (GCD, Serial/Parallel queues).</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-header">
+          <div>
+            <div class="exp-company">Leo AR</div>
+            <div class="exp-role">Senior iOS Developer · Remote</div>
+          </div>
+          <div class="exp-meta">
+            <span class="exp-date">Oct 2019 — Mar 2020</span>
+            <span class="exp-location">San Francisco, USA</span>
+          </div>
+        </div>
+        <div class="exp-body">
+          <div class="exp-tags">
+            <span class="tag">ARKit</span>
+            <span class="tag">RealityKit</span>
+            <span class="tag">Motion Capture API</span>
+            <span class="tag">React Native</span>
+          </div>
+          <ul class="exp-bullets">
+            <li>Added Motion Capture feature to an Augmented Reality app — recorded ~<strong>60 million dance movements</strong> in the database.</li>
+            <li>Integrated the native ARKit module into a React Native main project seamlessly.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-header">
+          <div>
+            <div class="exp-company">Medyasoft Digital</div>
+            <div class="exp-role">Senior iOS Developer</div>
+          </div>
+          <div class="exp-meta">
+            <span class="exp-date">Jan 2019 — Oct 2019</span>
+            <span class="exp-location">Istanbul, Turkey</span>
+          </div>
+        </div>
+        <div class="exp-body">
+          <div class="exp-tags">
+            <span class="tag">Auto Layout</span>
+            <span class="tag">Performance Optimization</span>
+            <span class="tag">iPad / iPhone</span>
+          </div>
+          <ul class="exp-bullets">
+            <li>Developed multiple modules for <strong>Turkish Airlines Cargo Portal (COMIS)</strong>.</li>
+            <li>Optimized memory leaks, improved app performance by <strong>21%</strong>. Universal iPhone/iPad support.</li>
+            <li>Contributed to <strong>Turkish Doco</strong> (Turkish Airlines Meal Reporting) — <strong>25% faster</strong> operations.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-header">
+          <div>
+            <div class="exp-company">Odeal</div>
+            <div class="exp-role">Senior iOS Developer</div>
+          </div>
+          <div class="exp-meta">
+            <span class="exp-date">Jan 2018 — Dec 2018</span>
+            <span class="exp-location">Istanbul, Turkey</span>
+          </div>
+        </div>
+        <div class="exp-body">
+          <div class="exp-tags">
+            <span class="tag">MVC</span>
+            <span class="tag">Crashlytics</span>
+            <span class="tag">Fintech</span>
+          </div>
+          <ul class="exp-bullets">
+            <li>Enhanced stability of the financial application by <strong>30%</strong>. Added financial features.</li>
+            <li>Raised Crash-Free user rate from <strong>86% → 99.8%</strong> as reported by Crashlytics.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-header">
+          <div>
+            <div class="exp-company">Pordiva Mobile System</div>
+            <div class="exp-role">iOS Developer</div>
+          </div>
+          <div class="exp-meta">
+            <span class="exp-date">Jul 2016 — Dec 2017</span>
+            <span class="exp-location">Istanbul, Turkey</span>
+          </div>
+        </div>
+        <div class="exp-body">
+          <div class="exp-tags">
+            <span class="tag">Swift</span>
+            <span class="tag">Objective-C</span>
+            <span class="tag">XMPP</span>
+            <span class="tag">Realm</span>
+            <span class="tag">MVC</span>
+          </div>
+          <ul class="exp-bullets">
+            <li>Built <strong>Viatori</strong> (social media) — photo/video sharing, location, messaging via XMPP. Realm gave <strong>55% faster</strong> message loading.</li>
+            <li>Contributed to <strong>ETA</strong> (cargo bid app), <strong>Fenerbahçe SK</strong> social app (Objective-C), <strong>CocaCola One Team</strong> event app.</li>
+            <li>Developed <strong>Turkish Airlines Skylife Magazine</strong> from scratch in 3 months — Mapbox SDK, offline maps with Realm, push notifications via OneSignal.</li>
+            <li>Built <strong>Isim Tescil</strong> (domain purchasing app) from scratch in 1 month — Objective-C.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-header">
+          <div>
+            <div class="exp-company">Freelance</div>
+            <div class="exp-role">iOS Developer</div>
+          </div>
+          <div class="exp-meta">
+            <span class="exp-date">Apr 2012 — Jul 2016</span>
+            <span class="exp-location">Samsun, Turkey</span>
+          </div>
+        </div>
+        <div class="exp-body">
+          <div class="exp-tags">
+            <span class="tag">Objective-C</span>
+            <span class="tag">MVC</span>
+            <span class="tag">App Store</span>
+          </div>
+          <ul class="exp-bullets">
+            <li>Built multiple independent apps: Patient Tracking, Radio App, Online Exam, Pictionary Diary.</li>
+            <li>Foundation of a 12-year career in native iOS development.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- AI & VIBE CODING -->
+  <section class="section" id="ai-projects">
+    <div class="section-header">
+      <span class="section-num">03</span>
+      <h2>AI & Automation Projects</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="ai-grid">
+
+      <div class="ai-card">
+        <div class="ai-card-icon">⚡</div>
+        <div class="ai-card-title">n8n AI Content Pipeline</div>
+        <div class="ai-card-desc">
+          End-to-end YouTube content automation — from AI video generation (Veo3, Sora) to auto-upload. Includes hook analysis with OpenAI Vision and multi-sheet Google Sheets queue management.
+        </div>
+        <div class="ai-card-stack">
+          <span class="tag">n8n</span>
+          <span class="tag">Veo3 / Sora</span>
+          <span class="tag">OpenAI Vision</span>
+          <span class="tag">Google Sheets</span>
+        </div>
+      </div>
+
+      <div class="ai-card">
+        <div class="ai-card-icon">🔍</div>
+        <div class="ai-card-title">LegalVector — Lawyer Knowledge Portal</div>
+        <div class="ai-card-desc">
+          RAG-powered legal knowledge base. Lawyers upload documents, users ask questions — Claude answers with source citations. Built with pgvector for semantic search.
+        </div>
+        <div class="ai-card-stack">
+          <span class="tag">Next.js</span>
+          <span class="tag">Supabase</span>
+          <span class="tag">pgvector</span>
+          <span class="tag">Claude API</span>
+        </div>
+      </div>
+
+      <div class="ai-card">
+        <div class="ai-card-icon">🤖</div>
+        <div class="ai-card-title">Vibe Coding & AI-Assisted Development</div>
+        <div class="ai-card-desc">
+          Using Claude, Cursor, and LLM APIs to build full products at speed. Iterative prompt engineering, structured output parsing, multi-agent workflow design.
+        </div>
+        <div class="ai-card-stack">
+          <span class="tag">Claude API</span>
+          <span class="tag">Cursor</span>
+          <span class="tag">Prompt Engineering</span>
+          <span class="tag">MCP</span>
+        </div>
+      </div>
+
+      <div class="ai-card">
+        <div class="ai-card-icon">🏢</div>
+        <div class="ai-card-title">Antigravity — Automation Agency</div>
+        <div class="ai-card-desc">
+          Founder of Antigravity, providing AI-powered automation services to businesses. Focus on content pipelines, workflow automation, and custom LLM integrations.
+        </div>
+        <div class="ai-card-stack">
+          <span class="tag">n8n</span>
+          <span class="tag">LLM APIs</span>
+          <span class="tag">Business Automation</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section class="section" id="education">
+    <div class="section-header">
+      <span class="section-num">04</span>
+      <h2>Education</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="edu-block">
+      <div>
+        <div class="edu-degree">BSc Applied Physics</div>
+        <div class="edu-school">Kahramanmaraş Sütçü İmam University</div>
+      </div>
+      <div class="edu-year">2003 – 2008</div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section" id="contact">
+    <div class="section-header">
+      <span class="section-num">05</span>
+      <h2>Contact</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="contact-grid">
+      <a href="mailto:cmneyp@gmail.com" class="contact-item">
+        <span class="contact-label">Email</span>
+        <span class="contact-value">cmneyp@gmail.com</span>
+      </a>
+      <a href="https://x.com/eyupcimen" target="_blank" class="contact-item">
+        <span class="contact-label">X / Twitter</span>
+        <span class="contact-value">@eyupcimen</span>
+      </a>
+      <a href="https://github.com/eyupcimen" target="_blank" class="contact-item">
+        <span class="contact-label">GitHub</span>
+        <span class="contact-value">github.com/eyupcimen</span>
+      </a>
+      <div class="contact-item">
+        <span class="contact-label">Location</span>
+        <span class="contact-value" style="color: var(--green);">Weil der Stadt, DE 🇩🇪</span>
+      </div>
+      <div class="contact-item">
+        <span class="contact-label">Work Authorization</span>
+        <span class="contact-value" style="color: var(--green);">Residence + Work Permit ✓</span>
+      </div>
+      <div class="contact-item">
+        <span class="contact-label">Availability</span>
+        <span class="contact-value" style="color: var(--green);">Immediate · No notice period</span>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <div class="inner">
+    <span class="footer-text">© 2025 Eyup Cimen — Built with <span>♥</span> and a bit of AI</span>
+    <span class="footer-text">eyupcimen.github.io</span>
+  </div>
+</footer>
+
+</body>
+</html>
