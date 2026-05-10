@@ -31,7 +31,7 @@
 
   /* GRAPH HERO */
   .graph-hero { width:100%; margin-top:52px; }
-  .graph-canvas-wrap { position:relative; width:100%; height:30vh; min-height:220px; border-bottom:1px solid var(--border2); overflow:hidden; }
+  .graph-canvas-wrap { position:relative; width:100%; height:62vh; min-height:400px; border-bottom:1px solid var(--border2); overflow:hidden; }
   #graph-canvas { position:absolute; inset:0; width:100%; height:100%; cursor:grab; }
   #graph-canvas:active { cursor:grabbing; }
   .graph-legend { position:absolute; top:10px; right:14px; z-index:4; display:flex; flex-direction:column; gap:5px; pointer-events:none; }
@@ -415,115 +415,155 @@
 
 <script>
 const NODES = [
-  // iOS Core
-  {id:'swift',      label:'Swift',              cat:'ios', w:5},
-  {id:'swiftui',    label:'SwiftUI',            cat:'ios', w:4},
-  {id:'uikit',      label:'UIKit',              cat:'ios', w:4},
-  {id:'objc',       label:'Objective-C',        cat:'ios', w:3},
-  {id:'arkit',      label:'ARKit',              cat:'ios', w:2},
-  {id:'realitykit', label:'RealityKit',         cat:'ios', w:2},
-  {id:'rxswift',    label:'RxSwift',            cat:'ios', w:2},
-  {id:'combine',    label:'Combine',            cat:'ios', w:2},
-  {id:'realm',      label:'Realm',              cat:'ios', w:2},
-  {id:'coredata',   label:'Core Data',          cat:'ios', w:2},
-  {id:'gcd',        label:'GCD / Multithreading',cat:'ios',w:3},
-  {id:'spm',        label:'Swift Package Mgr',  cat:'ios', w:3},
-  {id:'testflight', label:'TestFlight',         cat:'ios', w:2},
-  {id:'xmpp',       label:'XMPP Protocol',      cat:'ios', w:2},
-  {id:'mapbox',     label:'Mapbox SDK',         cat:'ios', w:2},
-  {id:'avfoundation',label:'AVFoundation',      cat:'ios', w:2},
-  {id:'onesignal',  label:'OneSignal',          cat:'ios', w:1},
-  {id:'motcap',     label:'Motion Capture',     cat:'ios', w:2},
-  // Architecture & Patterns
-  {id:'mvvm',       label:'MVVM',               cat:'skill', w:4},
-  {id:'vip',        label:'Clean Swift (VIP)',   cat:'skill', w:3},
-  {id:'mvc',        label:'MVC',                cat:'skill', w:2},
-  {id:'pop',        label:'Protocol-Oriented',  cat:'skill', w:3},
-  {id:'oop',        label:'OOP',                cat:'skill', w:2},
-  // Networking & Backend
-  {id:'restapi',    label:'REST API',            cat:'skill', w:3},
-  {id:'graphql',    label:'GraphQL',             cat:'skill', w:2},
-  {id:'alamofire',  label:'Alamofire',           cat:'skill', w:2},
-  {id:'moya',       label:'Moya',               cat:'skill', w:2},
+  // iOS Core Languages
+  {id:'swift',       label:'Swift',               cat:'ios', w:5},
+  {id:'swiftui',     label:'SwiftUI',             cat:'ios', w:4},
+  {id:'uikit',       label:'UIKit',               cat:'ios', w:4},
+  {id:'objc',        label:'Objective-C',         cat:'ios', w:3},
+  // iOS Frameworks
+  {id:'arkit',       label:'ARKit',               cat:'ios', w:2},
+  {id:'realitykit',  label:'RealityKit',          cat:'ios', w:2},
+  {id:'motcap',      label:'Motion Capture',      cat:'ios', w:2},
+  {id:'avfoundation',label:'AVFoundation',        cat:'ios', w:2},
+  {id:'coredata',    label:'Core Data',           cat:'ios', w:2},
+  {id:'xmpp',        label:'XMPP Protocol',       cat:'ios', w:2},
+  {id:'mapbox',      label:'Mapbox SDK',          cat:'ios', w:2},
+  {id:'onesignal',   label:'OneSignal',           cat:'ios', w:1},
+  {id:'reactnat',    label:'React Native',        cat:'ios', w:2},
+  // Concurrency
+  {id:'gcd',         label:'GCD / Multithreading',cat:'ios', w:3},
+  {id:'asyncawait',  label:'Async/Await',         cat:'ios', w:2},
+  // Architecture
+  {id:'mvvm',        label:'MVVM',                cat:'skill', w:4},
+  {id:'vip',         label:'Clean Swift (VIP)',   cat:'skill', w:3},
+  {id:'mvc',         label:'MVC',                 cat:'skill', w:2},
+  {id:'pop',         label:'Protocol-Oriented',   cat:'skill', w:3},
+  {id:'oop',         label:'OOP',                 cat:'skill', w:2},
+  // Networking
+  {id:'restapi',     label:'REST API',            cat:'skill', w:3},
+  {id:'graphql',     label:'GraphQL',             cat:'skill', w:2},
+  {id:'alamofire',   label:'Alamofire',           cat:'skill', w:3},
+  {id:'moya',        label:'Moya',                cat:'skill', w:2},
+  // Reactive
+  {id:'rxswift',     label:'RxSwift',             cat:'skill', w:3},
+  {id:'rxcocoa',     label:'RxCocoa',             cat:'skill', w:2},
+  {id:'combine',     label:'Combine',             cat:'skill', w:2},
+  // Storage
+  {id:'realm',       label:'RealmSwift',          cat:'skill', w:3},
+  {id:'spm',         label:'Swift Package Mgr',   cat:'skill', w:3},
+  {id:'cocoapods',   label:'CocoaPods',           cat:'skill', w:2},
   // DevOps & Tools
-  {id:'firebase',   label:'Firebase',            cat:'skill', w:3},
-  {id:'crashlytics',label:'Crashlytics',         cat:'skill', w:2},
-  {id:'bitrise',    label:'Bitrise CI/CD',       cat:'skill', w:3},
-  {id:'git',        label:'Git',                cat:'skill', w:2},
-  {id:'xcode',      label:'Xcode',              cat:'skill', w:2},
-  {id:'analytics',  label:'Google Analytics',   cat:'skill', w:2},
-  // Hardware / Special
-  {id:'nfc',        label:'NFC / BLE / QR',     cat:'skill', w:2},
-  {id:'reactnat',   label:'React Native',       cat:'skill', w:2},
+  {id:'firebase',    label:'Firebase',            cat:'skill', w:3},
+  {id:'crashlytics', label:'Crashlytics',         cat:'skill', w:2},
+  {id:'fcm',         label:'Firebase Messaging',  cat:'skill', w:2},
+  {id:'remoteconfig',label:'Remote Config',       cat:'skill', w:1},
+  {id:'dynamiclinks',label:'Dynamic Links',       cat:'skill', w:1},
+  {id:'bitrise',     label:'Bitrise CI/CD',       cat:'skill', w:3},
+  {id:'appcenter',   label:'AppCenter',           cat:'skill', w:2},
+  {id:'testflight',  label:'TestFlight',          cat:'skill', w:2},
+  {id:'git',         label:'Git',                 cat:'skill', w:2},
+  {id:'xcode',       label:'Xcode',               cat:'skill', w:2},
+  // Ozan SPM deps
+  {id:'kingfisher',  label:'Kingfisher',          cat:'skill', w:2},
+  {id:'factory',     label:'Factory (DI)',        cat:'skill', w:2},
+  {id:'anyformat',   label:'AnyFormatKit',        cat:'skill', w:1},
+  {id:'phonekit',    label:'PhoneNumberKit',      cat:'skill', w:1},
+  {id:'horizoncal',  label:'HorizonCalendar',     cat:'skill', w:1},
+  {id:'rswift',      label:'R.swift',             cat:'skill', w:1},
+  {id:'wescan',      label:'WeScan',              cat:'skill', w:1},
+  {id:'introspect',  label:'SwiftUI-Introspect',  cat:'skill', w:1},
+  {id:'iqkeyboard',  label:'IQKeyboardManager',   cat:'skill', w:1},
+  // Bilet Dukkani extra
+  {id:'snapkit',     label:'SnapKit',             cat:'skill', w:2},
+  {id:'googlesignin',label:'GoogleSignIn',        cat:'skill', w:1},
+  {id:'appsflyer',   label:'AppsFlyer',           cat:'skill', w:1},
+  {id:'fbsdk',       label:'Facebook SDK',        cat:'skill', w:1},
+  // Analytics
+  {id:'analytics',   label:'Google Analytics',   cat:'skill', w:2},
+  // Hardware
+  {id:'nfc',         label:'NFC / BLE / QR',     cat:'skill', w:2},
   // AI / Automation
-  {id:'claude',     label:'Claude API',          cat:'ai', w:4},
-  {id:'openai',     label:'OpenAI',              cat:'ai', w:3},
-  {id:'n8n',        label:'n8n',                cat:'ai', w:4},
-  {id:'vibe',       label:'Vibe Coding',         cat:'ai', w:3},
-  {id:'prompt',     label:'Prompt Engineering',  cat:'ai', w:3},
-  {id:'rag',        label:'RAG',                cat:'ai', w:3},
-  {id:'veo3',       label:'Veo3 / Sora',         cat:'ai', w:2},
-  {id:'nextjs',     label:'Next.js',             cat:'ai', w:2},
-  {id:'supabase',   label:'Supabase',            cat:'ai', w:2},
-  {id:'pgvector',   label:'pgvector',            cat:'ai', w:2},
+  {id:'claude',      label:'Claude API',          cat:'ai', w:4},
+  {id:'openai',      label:'OpenAI',              cat:'ai', w:3},
+  {id:'n8n',         label:'n8n',                 cat:'ai', w:4},
+  {id:'vibe',        label:'Vibe Coding',         cat:'ai', w:3},
+  {id:'prompt',      label:'Prompt Engineering',  cat:'ai', w:3},
+  {id:'rag',         label:'RAG',                 cat:'ai', w:3},
+  {id:'veo3',        label:'Veo3 / Sora',         cat:'ai', w:2},
+  {id:'nextjs',      label:'Next.js',             cat:'ai', w:2},
+  {id:'supabase',    label:'Supabase',            cat:'ai', w:2},
+  {id:'pgvector',    label:'pgvector',            cat:'ai', w:2},
   // Companies
-  {id:'antigrav',   label:'Antigravity',         cat:'company', w:5},
-  {id:'ozan',       label:'Ozan SuperApp',       cat:'company', w:4},
-  {id:'roofstacks', label:'Roofstacks',          cat:'company', w:3},
-  {id:'ipucu',      label:'Ipucu Software',      cat:'company', w:2},
-  {id:'globme',     label:'Globme',              cat:'company', w:2},
-  {id:'leoar',      label:'Leo AR',              cat:'company', w:2},
-  {id:'medyasoft',  label:'Medyasoft Digital',   cat:'company', w:2},
-  {id:'odeal',      label:'Odeal',               cat:'company', w:2},
-  {id:'pordiva',    label:'Pordiva',             cat:'company', w:2},
+  {id:'antigrav',    label:'Antigravity',         cat:'company', w:5},
+  {id:'ozan',        label:'Ozan SuperApp',       cat:'company', w:4},
+  {id:'roofstacks',  label:'Roofstacks',          cat:'company', w:3},
+  {id:'ipucu',       label:'Ipucu Software',      cat:'company', w:2},
+  {id:'globme',      label:'Globme',              cat:'company', w:2},
+  {id:'leoar',       label:'Leo AR',              cat:'company', w:2},
+  {id:'medyasoft',   label:'Medyasoft Digital',   cat:'company', w:2},
+  {id:'odeal',       label:'Odeal',               cat:'company', w:2},
+  {id:'pordiva',     label:'Pordiva',             cat:'company', w:2},
   // Projects
-  {id:'legalvec',   label:'LegalVector',         cat:'project', w:4},
-  {id:'pipeline',   label:'Content Pipeline',    cat:'project', w:3},
-  {id:'idenfit',    label:'Idenfit',             cat:'project', w:3},
-  {id:'bilet',      label:'Bilet Dukkani',       cat:'project', w:2},
-  {id:'skylife',    label:'Skylife Magazine',    cat:'project', w:2},
-  {id:'comis',      label:'TK Cargo (COMIS)',    cat:'project', w:2},
-  {id:'fups',       label:'Fups Payment',        cat:'project', w:2},
+  {id:'legalvec',    label:'LegalVector',         cat:'project', w:4},
+  {id:'pipeline',    label:'Content Pipeline',    cat:'project', w:3},
+  {id:'idenfit',     label:'Idenfit',             cat:'project', w:3},
+  {id:'bilet',       label:'Bilet Dukkani',       cat:'project', w:3},
+  {id:'skylife',     label:'Skylife Magazine',    cat:'project', w:2},
+  {id:'comis',       label:'TK Cargo (COMIS)',    cat:'project', w:2},
+  {id:'fups',        label:'Fups Payment',        cat:'project', w:2},
 ];
 
 const EDGES = [
-  // Swift ecosystem
-  ['swift','swiftui'],['swift','uikit'],['swift','objc'],['swift','spm'],['swift','gcd'],
-  ['swiftui','ozan'],['swiftui','mvvm'],['uikit','rxswift'],['uikit','realm'],['uikit','combine'],
-  ['arkit','realitykit'],['arkit','leoar'],['arkit','motcap'],
-  ['realm','gcd'],['realm','xmpp'],['coredata','realm'],
-  ['rxswift','roofstacks'],['combine','swift'],
-  // Architecture links
-  ['mvvm','ozan'],['mvvm','globme'],['mvvm','pop'],
-  ['vip','roofstacks'],['mvc','pordiva'],['mvc','odeal'],['pop','oop'],
+  // Swift core
+  ['swift','swiftui'],['swift','uikit'],['swift','objc'],['swift','spm'],['swift','gcd'],['swift','asyncawait'],
+  ['swiftui','mvvm'],['swiftui','ozan'],['swiftui','introspect'],['swiftui','horizoncal'],
+  ['uikit','rxswift'],['uikit','realm'],['uikit','snapkit'],
+  // Concurrency
+  ['gcd','asyncawait'],['gcd','realm'],['gcd','rxswift'],
+  // Reactive
+  ['rxswift','rxcocoa'],['rxswift','roofstacks'],['rxswift','bilet'],['combine','swift'],
   // Networking
   ['restapi','alamofire'],['restapi','moya'],['graphql','globme'],
-  ['alamofire','ozan'],['moya','roofstacks'],['moya','globme'],
+  ['alamofire','ozan'],['alamofire','anyformat'],
+  ['moya','roofstacks'],['moya','globme'],['moya','bilet'],
+  // Architecture
+  ['mvvm','ozan'],['mvvm','globme'],['mvvm','pop'],['pop','oop'],
+  ['vip','roofstacks'],['vip','bilet'],['mvc','pordiva'],['mvc','odeal'],
+  // Storage
+  ['realm','bilet'],['realm','fups'],['realm','skylife'],['coredata','realm'],
+  // Firebase stack
+  ['firebase','crashlytics'],['firebase','fcm'],['firebase','remoteconfig'],['firebase','dynamiclinks'],
+  ['firebase','ozan'],['firebase','roofstacks'],['firebase','bilet'],
+  ['crashlytics','odeal'],['crashlytics','ozan'],
   // DevOps
-  ['firebase','ozan'],['firebase','roofstacks'],['firebase','crashlytics'],
   ['bitrise','ozan'],['bitrise','roofstacks'],['git','bitrise'],
-  ['crashlytics','odeal'],['analytics','roofstacks'],
+  ['appcenter','bilet'],['testflight','ozan'],['testflight','bilet'],
+  ['analytics','roofstacks'],['googlesignin','bilet'],
+  ['appsflyer','bilet'],['fbsdk','bilet'],
+  // SPM / pods
+  ['spm','ozan'],['cocoapods','bilet'],
+  ['kingfisher','ozan'],['kingfisher','bilet'],
+  ['factory','ozan'],['rswift','ozan'],['phonekit','ozan'],
+  ['anyformat','ozan'],['horizoncal','ozan'],['wescan','ozan'],
+  ['introspect','ozan'],['iqkeyboard','ozan'],['iqkeyboard','bilet'],
+  ['snapkit','bilet'],
+  // iOS frameworks
+  ['arkit','realitykit'],['arkit','leoar'],['arkit','motcap'],
+  ['avfoundation','globme'],['nfc','idenfit'],['mapbox','skylife'],['onesignal','skylife'],
+  ['xmpp','fups'],['xmpp','ipucu'],
+  ['reactnat','leoar'],
   // Companies → projects
-  ['ozan','spm'],['ozan','firebase'],['ozan','bitrise'],
-  ['roofstacks','bilet'],['ipucu','fups'],['ipucu','xmpp'],
+  ['ozan','spm'],['roofstacks','bilet'],['ipucu','fups'],
   ['globme','idenfit'],['globme','nfc'],['globme','avfoundation'],
-  ['leoar','arkit'],['leoar','realitykit'],['leoar','motcap'],['leoar','reactnat'],
-  ['medyasoft','comis'],['medyasoft','xcode'],
-  ['odeal','mvc'],['pordiva','skylife'],['pordiva','mapbox'],['pordiva','onesignal'],
-  // Hardware
-  ['nfc','idenfit'],
+  ['leoar','arkit'],['leoar','motcap'],['leoar','reactnat'],
+  ['medyasoft','comis'],['odeal','mvc'],['pordiva','skylife'],['pordiva','mapbox'],
   // AI / Automation
   ['antigrav','n8n'],['antigrav','pipeline'],['antigrav','legalvec'],['antigrav','vibe'],
   ['n8n','veo3'],['n8n','pipeline'],['n8n','openai'],
   ['claude','legalvec'],['claude','rag'],['claude','prompt'],
   ['legalvec','nextjs'],['legalvec','supabase'],['legalvec','pgvector'],['legalvec','rag'],
-  ['openai','veo3'],['openai','prompt'],
-  ['vibe','prompt'],['vibe','claude'],
-  ['rag','pgvector'],['rag','supabase'],
-  ['nextjs','supabase'],['pgvector','supabase'],
-  // Cross-links
-  ['fups','xmpp'],['fups','realm'],['skylife','mapbox'],['skylife','onesignal'],
-  ['comis','xcode'],['idenfit','globme'],['bilet','roofstacks'],
+  ['openai','veo3'],['openai','prompt'],['vibe','prompt'],['vibe','claude'],
+  ['rag','pgvector'],['rag','supabase'],['nextjs','supabase'],['pgvector','supabase'],
 ];
 
 const CAT_COLOR = {
@@ -553,7 +593,7 @@ resize();
 
 const nodes = NODES.map((n, i) => {
   const angle = (i / NODES.length) * Math.PI * 2;
-  const r = Math.min(W, H) * 0.36;
+  const r = Math.min(W, H) * 0.38;
   return { ...n, x: W/2 + Math.cos(angle)*r, y: H/2 + Math.sin(angle)*r, vx:0, vy:0, radius: 3 + n.w*2.2, pulse: Math.random()*Math.PI*2 };
 });
 
@@ -564,7 +604,7 @@ const adj = {};
 nodes.forEach(n => adj[n.id] = new Set());
 edges.forEach(e => { adj[e.s.id].add(e.t.id); adj[e.t.id].add(e.s.id); });
 
-const REPEL=3000, ATTRACT=0.028, CENTER=0.01, DAMP=0.75, IDEAL=75;
+const REPEL=4500, ATTRACT=0.028, CENTER=0.01, DAMP=0.75, IDEAL=75;
 
 function tick() {
   for (let i=0;i<nodes.length;i++) {
@@ -695,7 +735,7 @@ loop();
 
 window.addEventListener('resize',()=>{
   resize(); vx=0; vy=0;
-  nodes.forEach((n,i)=>{ const a=(i/nodes.length)*Math.PI*2; n.x=W/2+Math.cos(a)*Math.min(W,H)*0.36; n.y=H/2+Math.sin(a)*Math.min(W,H)*0.36; });
+  nodes.forEach((n,i)=>{ const a=(i/nodes.length)*Math.PI*2; n.x=W/2+Math.cos(a)*Math.min(W,H)*0.38; n.y=H/2+Math.sin(a)*Math.min(W,H)*0.38; });
 });
 </script>
 
