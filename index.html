@@ -207,6 +207,7 @@
       <div class="skill-item"><div class="skill-dot"></div><span class="skill-name">UIKit</span><span class="skill-level">expert</span></div>
       <div class="skill-item"><div class="skill-dot"></div><span class="skill-name">Objective-C</span><span class="skill-level">expert</span></div>
       <div class="skill-item"><div class="skill-dot"></div><span class="skill-name">MVVM / VIP / MVC</span><span class="skill-level">expert</span></div>
+      <div class="skill-item"><div class="skill-dot"></div><span class="skill-name">VIPER / MVP</span><span class="skill-level">advanced</span></div>
       <div class="skill-item"><div class="skill-dot"></div><span class="skill-name">Protocol-Oriented Programming</span><span class="skill-level">expert</span></div>
       <div class="skill-item"><div class="skill-dot"></div><span class="skill-name">Swift Package Manager</span><span class="skill-level">advanced</span></div>
       <div class="skill-item"><div class="skill-dot"></div><span class="skill-name">Async/Await · GCD</span><span class="skill-level">advanced</span></div>
@@ -309,7 +310,7 @@
           <div class="exp-meta"><span class="exp-date">Oct 2019 — Mar 2020</span><span class="exp-location">San Francisco, USA</span></div>
         </div>
         <div class="exp-body">
-          <div class="exp-tags"><span class="tag">ARKit</span><span class="tag">RealityKit</span><span class="tag">Motion Capture API</span><span class="tag">React Native</span></div>
+          <div class="exp-tags"><span class="tag">ARKit</span><span class="tag">RealityKit</span><span class="tag">Motion Capture API</span><span class="tag">React Native</span><span class="tag">Unity</span></div>
           <ul class="exp-bullets">
             <li>Motion Capture feature — recorded ~<strong>60 million dance movements</strong>. Integrated native module into React Native project.</li>
           </ul>
@@ -349,7 +350,7 @@
           <div class="exp-meta"><span class="exp-date">Jul 2016 — Dec 2017</span><span class="exp-location">Istanbul, Turkey</span></div>
         </div>
         <div class="exp-body">
-          <div class="exp-tags"><span class="tag">Swift</span><span class="tag">Objective-C</span><span class="tag">XMPP</span><span class="tag">Realm</span><span class="tag">Mapbox</span></div>
+          <div class="exp-tags"><span class="tag">Swift</span><span class="tag">Objective-C</span><span class="tag">XMPP</span><span class="tag">Realm</span><span class="tag">Mapbox</span><span class="tag">Fenerbahçe SK</span><span class="tag">CocaCola</span><span class="tag">Volkswagen</span></div>
           <ul class="exp-bullets">
             <li><strong>Viatori</strong> (social media) — XMPP messaging, Realm <strong>55% faster</strong>. <strong>Fenerbahçe SK</strong> & <strong>CocaCola One Team</strong> apps.</li>
             <li><strong>Turkish Airlines Skylife Magazine</strong> — from scratch in 3 months. Mapbox, offline maps, OneSignal.</li>
@@ -364,9 +365,10 @@
           <div class="exp-meta"><span class="exp-date">Apr 2012 — Jul 2016</span><span class="exp-location">Samsun, Turkey</span></div>
         </div>
         <div class="exp-body">
-          <div class="exp-tags"><span class="tag">Objective-C</span><span class="tag">MVC</span><span class="tag">App Store</span></div>
+          <div class="exp-tags"><span class="tag">Objective-C</span><span class="tag">MVC</span><span class="tag">App Store</span><span class="tag">DHL</span></div>
           <ul class="exp-bullets">
             <li>Patient Tracking, Radio App, Online Exam, Pictionary Diary — foundation of a 12-year iOS career.</li>
+            <li><strong>DHL Human Resource App</strong> — built from scratch. Enterprise-grade first experience with corporate clients.</li>
           </ul>
         </div>
       </div>
@@ -430,6 +432,7 @@ const NODES = [
   {id:'mapbox',      label:'Mapbox SDK',          cat:'ios', w:2},
   {id:'onesignal',   label:'OneSignal',           cat:'ios', w:1},
   {id:'reactnat',    label:'React Native',        cat:'ios', w:2},
+  {id:'unity',       label:'Unity',               cat:'ios', w:2},
   // Concurrency
   {id:'gcd',         label:'GCD / Multithreading',cat:'ios', w:3},
   {id:'asyncawait',  label:'Async/Await',         cat:'ios', w:2},
@@ -437,6 +440,8 @@ const NODES = [
   {id:'mvvm',        label:'MVVM',                cat:'skill', w:4},
   {id:'vip',         label:'Clean Swift (VIP)',   cat:'skill', w:3},
   {id:'mvc',         label:'MVC',                 cat:'skill', w:2},
+  {id:'viper',       label:'VIPER',               cat:'skill', w:2},
+  {id:'mvp',         label:'MVP',                 cat:'skill', w:1},
   {id:'pop',         label:'Protocol-Oriented',   cat:'skill', w:3},
   {id:'oop',         label:'OOP',                 cat:'skill', w:2},
   // Networking
@@ -478,6 +483,7 @@ const NODES = [
   {id:'googlesignin',label:'GoogleSignIn',        cat:'skill', w:1},
   {id:'appsflyer',   label:'AppsFlyer',           cat:'skill', w:1},
   {id:'fbsdk',       label:'Facebook SDK',        cat:'skill', w:1},
+  {id:'adjust',      label:'Adjust SDK',          cat:'skill', w:1},
   // Analytics
   {id:'analytics',   label:'Google Analytics',   cat:'skill', w:2},
   // Hardware
@@ -540,6 +546,7 @@ const EDGES = [
   ['appcenter','bilet'],['testflight','ozan'],['testflight','bilet'],
   ['analytics','roofstacks'],['googlesignin','bilet'],
   ['appsflyer','bilet'],['fbsdk','bilet'],
+  ['adjust','medyasoft'],['adjust','odeal'],
   // SPM / pods
   ['spm','ozan'],['cocoapods','bilet'],
   ['kingfisher','ozan'],['kingfisher','bilet'],
@@ -552,6 +559,9 @@ const EDGES = [
   ['avfoundation','globme'],['nfc','idenfit'],['mapbox','skylife'],['onesignal','skylife'],
   ['xmpp','fups'],['xmpp','ipucu'],
   ['reactnat','leoar'],
+  ['unity','leoar'],['unity','arkit'],['unity','reactnat'],
+  // Architecture extras
+  ['viper','mvc'],['viper','mvvm'],['mvp','mvc'],['mvp','mvvm'],
   // Companies → projects
   ['ozan','spm'],['roofstacks','bilet'],['ipucu','fups'],
   ['globme','idenfit'],['globme','nfc'],['globme','avfoundation'],
