@@ -134,6 +134,9 @@
   .blink { display:inline-block; width:3px; height:0.85em; background:var(--accent); margin-left:3px; vertical-align:middle; animation:blink 1s step-end infinite; }
   @keyframes blink { 50%{opacity:0;} }
 
+  .lang-btn { padding:5px 12px; font-family:var(--mono); font-size:11px; letter-spacing:0.08em; border-radius:2px; cursor:pointer; border:1px solid var(--border2); background:transparent; color:var(--text2); transition:all 0.2s; display:flex; align-items:center; gap:6px; }
+  .lang-btn:hover { border-color:var(--accent); color:var(--accent); }
+  .lang-btn .lang-flag { font-size:13px; }
   @media (max-width:640px) {
     .stats-bar { grid-template-columns:repeat(2,1fr); }
     .nav-links { display:none; }
@@ -152,11 +155,15 @@
   <div class="inner">
     <div class="nav-logo">eyup<span>.</span>cimen</div>
     <ul class="nav-links">
-      <li><a href="#skills">skills</a></li>
-      <li><a href="#experience">experience</a></li>
-      <li><a href="#ai-projects">ai & automation</a></li>
-      <li><a href="#contact">contact</a></li>
+      <li><a href="#skills" data-i18n="nav_skills">skills</a></li>
+      <li><a href="#experience" data-i18n="nav_exp">experience</a></li>
+      <li><a href="#ai-projects" data-i18n="nav_ai">ai & automation</a></li>
+      <li><a href="#contact" data-i18n="nav_contact">contact</a></li>
     </ul>
+    <button class="lang-btn" id="lang-toggle" onclick="toggleLang()">
+      <span class="lang-flag" id="lang-flag">🇩🇪</span>
+      <span id="lang-label">DE</span>
+    </button>
   </div>
 </nav>
 
@@ -164,26 +171,26 @@
   <div class="graph-canvas-wrap">
     <canvas id="graph-canvas"></canvas>
     <div class="graph-legend">
-      <div class="leg"><div class="leg-dot" style="background:#4f9eff"></div>iOS / Mobile</div>
-      <div class="leg"><div class="leg-dot" style="background:#4ade80"></div>AI / Automation</div>
-      <div class="leg"><div class="leg-dot" style="background:#f472b6"></div>Companies</div>
-      <div class="leg"><div class="leg-dot" style="background:#fb923c"></div>Skills / Tech</div>
-      <div class="leg"><div class="leg-dot" style="background:#a78bfa"></div>Projects</div>
+      <div class="leg"><div class="leg-dot" style="background:#4f9eff"></div><span data-i18n="leg_ios">iOS / Mobile</span></div>
+      <div class="leg"><div class="leg-dot" style="background:#4ade80"></div><span data-i18n="leg_ai">AI / Automation</span></div>
+      <div class="leg"><div class="leg-dot" style="background:#f472b6"></div><span data-i18n="leg_companies">Companies</span></div>
+      <div class="leg"><div class="leg-dot" style="background:#fb923c"></div><span data-i18n="leg_skills">Skills / Tech</span></div>
+      <div class="leg"><div class="leg-dot" style="background:#a78bfa"></div><span data-i18n="leg_projects">Projects</span></div>
     </div>
     <div class="scroll-hint">SCROLL<div class="scroll-hint-arrow"></div></div>
   </div>
   <div class="graph-overlay">
-    <div class="hero-label">available for hire · Germany</div>
+    <div class="hero-label" data-i18n="hero_label">available for hire · Germany</div>
     <h1>Eyup <span class="dim">Cimen</span><span class="acc">.</span><span class="blink"></span></h1>
     <div class="hero-badges">
-      <span class="badge green">● Open to work</span>
-      <span class="badge blue">No notice period</span>
+      <span class="badge green" data-i18n="badge_open">● Open to work</span>
+      <span class="badge blue" data-i18n="badge_notice">No notice period</span>
       <span class="badge">📍 Weil der Stadt, BW</span>
       <span class="badge">🇩🇪 Work permit ✓</span>
       <span class="badge">Swift · SwiftUI · AI</span>
     </div>
     <div class="hero-cta">
-      <a href="mailto:cmneyp@gmail.com" class="btn btn-primary">→ Contact me</a>
+      <a href="mailto:cmneyp@gmail.com" class="btn btn-primary" data-i18n="btn_contact">→ Contact me</a>
       <a href="https://github.com/eyupcimen" target="_blank" class="btn btn-outline">GitHub ↗</a>
       <a href="https://x.com/eyupcimen" target="_blank" class="btn btn-outline">X ↗</a>
     </div>
@@ -193,14 +200,14 @@
 <div class="container">
 
   <div class="stats-bar">
-    <div class="stat"><div class="stat-num">12<span>+</span></div><div class="stat-label">years experience</div></div>
-    <div class="stat"><div class="stat-num">15<span>+</span></div><div class="stat-label">apps shipped</div></div>
-    <div class="stat"><div class="stat-num">99<span>.8%</span></div><div class="stat-label">crash-free rate</div></div>
-    <div class="stat"><div class="stat-num">5<span>+</span></div><div class="stat-label">industries</div></div>
+    <div class="stat"><div class="stat-num">12<span>+</span></div><div class="stat-label" data-i18n="stat_years">years experience</div></div>
+    <div class="stat"><div class="stat-num">15<span>+</span></div><div class="stat-label" data-i18n="stat_apps">apps shipped</div></div>
+    <div class="stat"><div class="stat-num">99<span>.8%</span></div><div class="stat-label" data-i18n="stat_crash">crash-free rate</div></div>
+    <div class="stat"><div class="stat-num">5<span>+</span></div><div class="stat-label" data-i18n="stat_industries">industries</div></div>
   </div>
 
   <section class="section" id="skills">
-    <div class="section-header"><span class="section-num">01</span><h2>Technical Skills</h2><div class="section-line"></div></div>
+    <div class="section-header"><span class="section-num">01</span><h2 data-i18n="sec_skills">Technical Skills</h2><div class="section-line"></div></div>
     <div class="skills-grid">
       <div class="skill-item"><div class="skill-dot"></div><span class="skill-name">Swift</span><span class="skill-level">expert</span></div>
       <div class="skill-item"><div class="skill-dot"></div><span class="skill-name">SwiftUI</span><span class="skill-level">expert</span></div>
@@ -227,22 +234,22 @@
   </section>
 
   <section class="section" id="experience">
-    <div class="section-header"><span class="section-num">02</span><h2>Experience</h2><div class="section-line"></div></div>
+    <div class="section-header"><span class="section-num">02</span><h2 data-i18n="sec_exp">Experience</h2><div class="section-line"></div></div>
     <div class="exp-list">
 
       <div class="exp-item">
         <div class="exp-header">
-          <div><div class="exp-company">Antigravity <span style="color:var(--text3);font-size:13px;font-weight:400">— Founder</span></div><div class="exp-role">AI Automation · Vibe Coding · Independent Projects</div></div>
-          <div class="exp-meta"><span class="exp-date">Jun 2023 — Present</span><span class="exp-location">Stuttgart, Germany</span></div>
+          <div><div class="exp-company" data-i18n="exp0_company">Career Development <span style="color:var(--text3);font-size:13px;font-weight:400">— Germany Integration</span></div><div class="exp-role" data-i18n="exp0_role">Technical Growth · AI Tooling · German Language Certification</div></div>
+          <div class="exp-meta"><span class="exp-date" data-i18n="exp0_date">Jun 2023 — Present</span><span class="exp-location">Stuttgart, Germany</span></div>
         </div>
         <div class="exp-body">
-          <div class="exp-tags"><span class="tag">n8n</span><span class="tag">Claude API</span><span class="tag">OpenAI</span><span class="tag">Veo3 / Sora</span><span class="tag">Next.js</span><span class="tag">Supabase</span><span class="tag">pgvector</span><span class="tag">Vibe Coding</span></div>
+          <div class="exp-tags"><span class="tag">Swift / SwiftUI</span><span class="tag">Vibe Coding</span><span class="tag">Claude API</span><span class="tag">n8n</span><span class="tag">Next.js</span><span class="tag">German B1</span></div>
           <ul class="exp-bullets">
-            <li>Founded <strong>Antigravity</strong> — AI-powered automation agency delivering workflow and content pipeline solutions.</li>
-            <li>Built end-to-end <strong>AI video content pipelines</strong> with n8n, Veo3, Sora, and OpenAI Vision for fully automated YouTube production.</li>
-            <li>Developed <strong>LegalVector</strong> — RAG-based lawyer knowledge portal (Next.js, Supabase, pgvector, Claude API).</li>
-            <li>Adopted <strong>vibe coding</strong> workflow — full-stack products built rapidly with LLM APIs, Cursor, and iterative prompt engineering.</li>
-            <li>Pursued German language certification — achieved <strong>B1 level</strong>, working toward B2.</li>
+            <li data-i18n="exp0_b1">Relocated to Germany — completed cultural and professional integration into the German tech ecosystem.</li>
+            <li data-i18n="exp0_b2">Maintained and deepened iOS expertise through personal projects, platform updates (Swift 5.9+, SwiftUI), and vibe coding workflows using LLM APIs and Cursor.</li>
+            <li data-i18n="exp0_b3">Built <strong>LegalVector</strong> — a RAG-based lawyer knowledge portal (Next.js, Supabase, pgvector, Claude API) as a full-stack learning project.</li>
+            <li data-i18n="exp0_b4">Explored AI automation tooling: n8n workflows, OpenAI Vision, Veo3/Sora pipelines — hands-on with emerging agentic and content automation patterns.</li>
+            <li data-i18n="exp0_b5">Achieved <strong>German B1 certification</strong> (DTZ), actively working toward B2.</li>
           </ul>
         </div>
       </div>
@@ -377,17 +384,17 @@
   </section>
 
   <section class="section" id="ai-projects">
-    <div class="section-header"><span class="section-num">03</span><h2>AI & Automation Projects</h2><div class="section-line"></div></div>
+    <div class="section-header"><span class="section-num">03</span><h2 data-i18n="sec_ai">AI & Automation Projects</h2><div class="section-line"></div></div>
     <div class="ai-grid">
       <div class="ai-card"><div class="ai-card-icon">⚡</div><div class="ai-card-title">n8n AI Content Pipeline</div><div class="ai-card-desc">End-to-end YouTube automation — Veo3/Sora video generation to upload. OpenAI Vision hook analysis, Google Sheets queue.</div><div class="ai-card-stack"><span class="tag">n8n</span><span class="tag">Veo3/Sora</span><span class="tag">OpenAI Vision</span><span class="tag">Google Sheets</span></div></div>
       <div class="ai-card"><div class="ai-card-icon">🔍</div><div class="ai-card-title">LegalVector — Lawyer Portal</div><div class="ai-card-desc">RAG-powered legal knowledge base. Lawyers upload docs, users ask — Claude answers with citations. pgvector for semantic search.</div><div class="ai-card-stack"><span class="tag">Next.js</span><span class="tag">Supabase</span><span class="tag">pgvector</span><span class="tag">Claude API</span></div></div>
       <div class="ai-card"><div class="ai-card-icon">🤖</div><div class="ai-card-title">Vibe Coding & AI-Assisted Dev</div><div class="ai-card-desc">Full products at speed with Claude, Cursor, LLM APIs. Structured output parsing, multi-agent workflows, prompt engineering.</div><div class="ai-card-stack"><span class="tag">Claude API</span><span class="tag">Cursor</span><span class="tag">Prompt Eng.</span><span class="tag">MCP</span></div></div>
-      <div class="ai-card"><div class="ai-card-icon">🏢</div><div class="ai-card-title">Antigravity — Automation Agency</div><div class="ai-card-desc">Founder. AI-powered automation services — content pipelines, workflow automation, custom LLM integrations for businesses.</div><div class="ai-card-stack"><span class="tag">n8n</span><span class="tag">LLM APIs</span><span class="tag">Automation</span></div></div>
+      <div class="ai-card"><div class="ai-card-icon">🛠️</div><div class="ai-card-title">iOS Platform Deep Dive</div><div class="ai-card-desc">Hands-on exploration of Swift 5.9+, SwiftUI updates, async/await patterns, and Swift Package Manager modularity during career development period.</div><div class="ai-card-stack"><span class="tag">Swift 5.9+</span><span class="tag">SwiftUI</span><span class="tag">Async/Await</span><span class="tag">SPM</span></div></div>
     </div>
   </section>
 
   <section class="section" id="education">
-    <div class="section-header"><span class="section-num">04</span><h2>Education</h2><div class="section-line"></div></div>
+    <div class="section-header"><span class="section-num">04</span><h2 data-i18n="sec_edu">Education</h2><div class="section-line"></div></div>
     <div class="edu-block">
       <div><div class="edu-degree">BSc Applied Physics</div><div class="edu-school">Kahramanmaraş Sütçü İmam University</div></div>
       <div class="edu-year">2003 – 2008</div>
@@ -395,14 +402,14 @@
   </section>
 
   <section class="section" id="contact">
-    <div class="section-header"><span class="section-num">05</span><h2>Contact</h2><div class="section-line"></div></div>
+    <div class="section-header"><span class="section-num">05</span><h2 data-i18n="sec_contact">Contact</h2><div class="section-line"></div></div>
     <div class="contact-grid">
-      <a href="mailto:cmneyp@gmail.com" class="contact-item"><span class="contact-label">Email</span><span class="contact-value">cmneyp@gmail.com</span></a>
+      <a href="mailto:cmneyp@gmail.com" class="contact-item"><span class="contact-label" data-i18n="c_email">Email</span><span class="contact-value">cmneyp@gmail.com</span></a>
       <a href="https://x.com/eyupcimen" target="_blank" class="contact-item"><span class="contact-label">X / Twitter</span><span class="contact-value">@eyupcimen</span></a>
       <a href="https://github.com/eyupcimen" target="_blank" class="contact-item"><span class="contact-label">GitHub</span><span class="contact-value">github.com/eyupcimen</span></a>
-      <div class="contact-item"><span class="contact-label">Location</span><span class="contact-value" style="color:var(--green)">Weil der Stadt, DE 🇩🇪</span></div>
-      <div class="contact-item"><span class="contact-label">Work Authorization</span><span class="contact-value" style="color:var(--green)">Residence + Work Permit ✓</span></div>
-      <div class="contact-item"><span class="contact-label">Availability</span><span class="contact-value" style="color:var(--green)">Immediate · No notice period</span></div>
+      <div class="contact-item"><span class="contact-label" data-i18n="c_location">Location</span><span class="contact-value" style="color:var(--green)">Weil der Stadt, DE 🇩🇪</span></div>
+      <div class="contact-item"><span class="contact-label" data-i18n="c_auth">Work Authorization</span><span class="contact-value" style="color:var(--green)" data-i18n="c_auth_val">Residence + Work Permit ✓</span></div>
+      <div class="contact-item"><span class="contact-label" data-i18n="c_avail">Availability</span><span class="contact-value" style="color:var(--green)" data-i18n="c_avail_val">Immediate · No notice period</span></div>
     </div>
   </section>
 
@@ -410,10 +417,77 @@
 
 <footer>
   <div class="inner">
-    <span class="footer-text">© 2025 Eyup Cimen — Built with <span>♥</span> and a bit of AI</span>
+    <span class="footer-text" data-i18n="footer_copy">© 2025 Eyup Cimen — Built with <span>♥</span> and a bit of AI</span>
     <span class="footer-text">eyupcimen.github.io</span>
   </div>
 </footer>
+
+<script>
+// ── i18n ──────────────────────────────────────────────────────────────
+const TRANSLATIONS = {
+  en: {
+    nav_skills:'skills', nav_exp:'experience', nav_ai:'ai & automation', nav_contact:'contact',
+    leg_ios:'iOS / Mobile', leg_ai:'AI / Automation', leg_companies:'Companies', leg_skills:'Skills / Tech', leg_projects:'Projects',
+    hero_label:'available for hire · Germany',
+    badge_open:'● Open to work', badge_notice:'No notice period',
+    btn_contact:'→ Contact me',
+    stat_years:'years experience', stat_apps:'apps shipped', stat_crash:'crash-free rate', stat_industries:'industries',
+    sec_skills:'Technical Skills', sec_exp:'Experience', sec_ai:'AI & Automation Projects', sec_edu:'Education', sec_contact:'Contact',
+    exp0_company:'Career Development <span style="color:var(--text3);font-size:13px;font-weight:400">— Germany Integration</span>',
+    exp0_role:'Technical Growth · AI Tooling · German Language Certification',
+    exp0_date:'Jun 2023 — Present',
+    exp0_b1:'Relocated to Germany — completed cultural and professional integration into the German tech ecosystem.',
+    exp0_b2:'Maintained and deepened iOS expertise through personal projects, platform updates (Swift 5.9+, SwiftUI), and vibe coding workflows using LLM APIs and Cursor.',
+    exp0_b3:'Built <strong>LegalVector</strong> — a RAG-based lawyer knowledge portal (Next.js, Supabase, pgvector, Claude API) as a full-stack learning project.',
+    exp0_b4:'Explored AI automation tooling: n8n workflows, OpenAI Vision, Veo3/Sora pipelines — hands-on with emerging agentic and content automation patterns.',
+    exp0_b5:'Achieved <strong>German B1 certification</strong> (DTZ), actively working toward B2.',
+    c_email:'Email', c_location:'Location', c_auth:'Work Authorization', c_auth_val:'Residence + Work Permit ✓', c_avail:'Availability', c_avail_val:'Immediate · No notice period',
+    footer_copy:'© 2025 Eyup Cimen — Built with <span>♥</span> and a bit of AI',
+  },
+  de: {
+    nav_skills:'fähigkeiten', nav_exp:'erfahrung', nav_ai:'KI & automatisierung', nav_contact:'kontakt',
+    leg_ios:'iOS / Mobil', leg_ai:'KI / Automatisierung', leg_companies:'Unternehmen', leg_skills:'Fähigkeiten / Tech', leg_projects:'Projekte',
+    hero_label:'verfügbar zur Einstellung · Deutschland',
+    badge_open:'● Offen für Stellen', badge_notice:'Keine Kündigungsfrist',
+    btn_contact:'→ Kontakt aufnehmen',
+    stat_years:'Jahre Erfahrung', stat_apps:'Apps veröffentlicht', stat_crash:'Absturzfreiheitsrate', stat_industries:'Branchen',
+    sec_skills:'Technische Fähigkeiten', sec_exp:'Berufserfahrung', sec_ai:'KI & Automatisierungsprojekte', sec_edu:'Ausbildung', sec_contact:'Kontakt',
+    exp0_company:'Berufliche Entwicklung <span style="color:var(--text3);font-size:13px;font-weight:400">— Integration in Deutschland</span>',
+    exp0_role:'Technisches Wachstum · KI-Werkzeuge · Deutschzertifizierung',
+    exp0_date:'Jun 2023 — Heute',
+    exp0_b1:'Umzug nach Deutschland — erfolgreiche kulturelle und berufliche Integration in das deutsche Tech-Ökosystem.',
+    exp0_b2:'iOS-Kenntnisse durch persönliche Projekte, Plattform-Updates (Swift 5.9+, SwiftUI) und Vibe-Coding-Workflows mit LLM-APIs und Cursor vertieft.',
+    exp0_b3:'<strong>LegalVector</strong> entwickelt — ein RAG-basiertes Anwalts-Wissensportal (Next.js, Supabase, pgvector, Claude API) als Full-Stack-Lernprojekt.',
+    exp0_b4:'KI-Automatisierungstools erkundet: n8n-Workflows, OpenAI Vision, Veo3/Sora-Pipelines — praktische Erfahrung mit agentischen Mustern.',
+    exp0_b5:'<strong>Deutschzertifikat B1</strong> (DTZ) erworben, aktiv auf B2-Niveau hinarbeitend.',
+    c_email:'E-Mail', c_location:'Standort', c_auth:'Arbeitserlaubnis', c_auth_val:'Aufenthalts- + Arbeitserlaubnis ✓', c_avail:'Verfügbarkeit', c_avail_val:'Sofort · Keine Kündigungsfrist',
+    footer_copy:'© 2025 Eyup Cimen — Entwickelt mit <span>♥</span> und etwas KI',
+  }
+};
+
+let currentLang = 'en';
+
+function toggleLang() {
+  currentLang = currentLang === 'en' ? 'de' : 'en';
+  applyLang();
+}
+
+function applyLang() {
+  const t = TRANSLATIONS[currentLang];
+  // Update all data-i18n elements
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (t[key] !== undefined) el.innerHTML = t[key];
+  });
+  // Update toggle button
+  const isDE = currentLang === 'de';
+  document.getElementById('lang-flag').textContent = isDE ? '🇬🇧' : '🇩🇪';
+  document.getElementById('lang-label').textContent = isDE ? 'EN' : 'DE';
+  // Update html lang attribute
+  document.documentElement.lang = currentLang;
+}
+// ── end i18n ───────────────────────────────────────────────────────────
+</script>
 
 <script>
 const NODES = [
@@ -500,7 +574,7 @@ const NODES = [
   {id:'supabase',    label:'Supabase',            cat:'ai', w:2},
   {id:'pgvector',    label:'pgvector',            cat:'ai', w:2},
   // Companies
-  {id:'antigrav',    label:'Antigravity',         cat:'company', w:5},
+  {id:'antigrav',    label:'Career Dev · DE',     cat:'company', w:4},
   {id:'ozan',        label:'Ozan SuperApp',       cat:'company', w:4},
   {id:'roofstacks',  label:'Roofstacks',          cat:'company', w:3},
   {id:'ipucu',       label:'Ipucu Software',      cat:'company', w:2},
