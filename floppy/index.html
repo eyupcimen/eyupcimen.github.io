@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Eyüp Çimen · Senior iOS Developer</title>
+<meta name="description" content="Senior iOS Developer with 12+ years of experience. Swift, SwiftUI, Objective-C. Based in Weil der Stadt, Germany. Open to work.">
+<meta property="og:title" content="Eyüp Çimen · Senior iOS Developer">
+<meta property="og:description" content="Pick a floppy, insert it into the Mac, see what I built.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://eyupcimen.github.io/">
+<link rel="icon" href="../assets/favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&amp;family=VT323&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="fit">
+<div class="stage" id="stage">
+  <div class="viewport" id="viewport">
+  <div class="world" id="world">
+
+    <!-- floor, rug, sunlight -->
+    <div class="p" style="width: 3600px; height: 2000px; left: -1800px; top: -1000px; transform: translate3d(0px, 736px, 600px) rotateX(90deg); background-color: #7c5a3c; background-image: repeating-linear-gradient(90deg, rgba(30,18,8,.22) 0 2px, transparent 2px 170px), repeating-linear-gradient(0deg, rgba(255,255,255,.05) 0 1px, transparent 1px 23px)"></div>
+    <div class="p" style="width: 2100px; height: 1200px; left: -1050px; top: -600px; transform: translate3d(0px, 735px, 380px) rotateX(90deg); background: #5f6a58; border-radius: 50%; box-shadow: inset 0 0 0 22px #566050"></div>
+    <div class="p sunpatch" id="sunpatch" style="width: 900px; height: 1100px; left: -450px; top: -550px; transform: translate3d(860px, 734px, 520px) rotateX(90deg) skewX(-24deg); background: radial-gradient(ellipse at 50% 50%, rgba(255,236,196,.2) 0%, rgba(255,236,196,.1) 50%, transparent 75%)"></div>
+
+    <!-- walls -->
+    <div class="p" style="width: 3600px; height: 3000px; left: -1800px; top: -1500px; transform: translate3d(0px, -764px, -400px); background: radial-gradient(ellipse 1700px 1300px at 78% 42%, #9ea296 0%, #82877b 50%, #6b7066 100%)"></div>
+    <div class="p" style="width: 3600px; height: 44px; left: -1800px; top: -22px; transform: translate3d(0px, 714px, -398px); background: #b9b5aa; box-shadow: 0 -2px 0 #5d6158"></div>
+    <div class="p" style="width: 2000px; height: 3000px; left: -1000px; top: -1500px; transform: translate3d(-1800px, -764px, 600px) rotateY(90deg); background: #62675d"></div>
+    <div class="p" style="width: 2000px; height: 3000px; left: -1000px; top: -1500px; transform: translate3d(1800px, -764px, 600px) rotateY(-90deg); background: radial-gradient(ellipse 1200px 1000px at 25% 45%, #8a8f82 0%, #757a6f 60%, #686d62 100%)"></div>
+    <div id="tiles"></div>
+
+    <!-- window -->
+    <div class="p" id="sky" style="width: 760px; height: 900px; left: -380px; top: -450px; transform: translate3d(1060px, -900px, -398px); box-sizing: border-box; border: 18px solid #f8f6f1; box-shadow: 0 0 0 2px #d3d6cc, 0 18px 40px rgba(20,25,15,.3)">
+      <div style="position: absolute; left: 50%; top: 0; bottom: 0; width: 14px; margin-left: -7px; background: #f8f6f1"></div>
+      <div style="position: absolute; top: 46%; left: 0; right: 0; height: 14px; background: #f8f6f1"></div>
+      <div class="orb"></div>
+    </div>
+    <div class="p" style="width: 820px; height: 26px; left: -410px; top: -13px; transform: translate3d(1060px, -437px, -380px) rotateX(90deg); background: #f8f6f1"></div>
+
+    <!-- skills gallery -->
+    <div class="p art" data-art="swiftui" tabindex="0" role="button" aria-label="Painting: SwiftUI" style="width: 520px; height: 380px; left: -260px; top: -190px; transform: translate3d(0px, -1040px, -396px); border: 12px solid #1a1a1a; background: #1a1a1a">
+      <div style="width: 100%; height: 100%; display: grid; grid-template-columns: 2fr 1fr 1.2fr; grid-template-rows: 1.3fr 1fr 0.8fr; gap: 9px">
+        <div style="background: #f4f0e6; grid-row: span 2"></div>
+        <div style="background: #d7322b"></div>
+        <div style="background: #f4f0e6"></div>
+        <div style="background: #f4f0e6"></div>
+        <div style="background: #f2c230"></div>
+        <div style="background: #1d4fa3"></div>
+        <div style="background: #f4f0e6; grid-column: span 2"></div>
+      </div>
+    </div>
+    <div class="p plaque" style="left: -95px; top: -50px; transform: translate3d(0px, -790px, -397px)"><b>Composition with VStack and HStack</b><span>Eyüp Çimen, 2022–today</span><i>SwiftUI on Xcode canvas</i></div>
+
+    <div class="p art" data-art="swift" tabindex="0" role="button" aria-label="Painting: Swift" style="width: 340px; height: 460px; left: -170px; top: -230px; transform: translate3d(-800px, -1120px, -396px); border: 14px solid #5c4330; background: #e2572b">
+      <div style="position: absolute; left: 22px; right: 22px; top: 26px; height: 210px; background: #f39a45; filter: blur(3px); border-radius: 6px"></div>
+      <div style="position: absolute; left: 22px; right: 22px; top: 262px; height: 140px; background: #a8301f; filter: blur(3px); border-radius: 6px"></div>
+    </div>
+    <div class="p plaque" style="left: -95px; top: -50px; transform: translate3d(-520px, -940px, -397px)"><b>Swift, in Orange and Late-Night Red</b><span>Eyüp Çimen, 2016–today</span><i>Value types on protocols</i></div>
+
+    <div class="p art" data-art="objc" tabindex="0" role="button" aria-label="Painting: Objective-C" style="width: 280px; height: 280px; left: -140px; top: -140px; transform: translate3d(-1320px, -1260px, -396px); border: 10px solid #f7f5ef; background: #efe7d6; display: flex; align-items: center; justify-content: center; gap: 10px; font-family: Georgia, 'Times New Roman', serif; font-size: 170px; line-height: 1; color: #1a1a1a">
+      <span style="font-weight: 300">[</span><span style="width: 18px; height: 18px; border-radius: 50%; background: #c8352b"></span><span style="font-weight: 300">]</span>
+    </div>
+    <div class="p plaque" style="left: -95px; top: -50px; transform: translate3d(-1040px, -1190px, -397px)"><b>Untitled [message]</b><span>Eyüp Çimen, 2012–today</span><i>Objective-C on brackets</i></div>
+
+    <!-- self-portrait: drop your photo at floppy/assets/me.jpg -->
+    <div class="p art" data-art="me" tabindex="0" role="button" aria-label="Self-portrait" style="width: 280px; height: 340px; left: -140px; top: -170px; transform: translate3d(-1320px, -880px, -396px); border: 14px solid #b08d57; background: #2a2a2a; overflow: hidden">
+      <img id="portrait" src="assets/me.jpg" alt="Eyüp Çimen" style="width: 100%; height: 100%; object-fit: cover; display: block; filter: sepia(.18) saturate(.9) contrast(1.04)">
+    </div>
+    <div class="p plaque" style="left: -95px; top: -50px; transform: translate3d(-1040px, -790px, -397px)"><b>Self-Portrait with Xcode</b><span>Eyüp Çimen, 2012–today</span><i>Oil on Retina display</i></div>
+
+    <div class="p art" data-art="mvvm" tabindex="0" role="button" aria-label="Painting: MVVM" style="width: 260px; height: 260px; left: -130px; top: -130px; transform: translate3d(470px, -1060px, -396px); border: 10px solid #f7f5ef; background: #3d6b5a">
+      <div style="position: absolute; left: 30px; top: 40px; width: 180px; height: 180px; background: #7fa88f"></div>
+      <div style="position: absolute; left: 65px; top: 85px; width: 110px; height: 110px; background: #e9d8a6"></div>
+    </div>
+    <div class="p plaque" style="left: -95px; top: -50px; transform: translate3d(470px, -840px, -397px)"><b>Homage to the Layer</b><span>Eyüp Çimen, 2020–today</span><i>Model, ViewModel, View</i></div>
+
+    <div class="p art" data-art="clean" tabindex="0" role="button" aria-label="Painting: Clean Swift" style="width: 220px; height: 180px; left: -110px; top: -90px; transform: translate3d(-800px, -680px, -396px); border: 10px solid #d9c6a2; background: #fbfaf6">
+      <div style="position: absolute; left: 58px; top: 38px; width: 84px; height: 84px; background: #f1efe8; box-shadow: 0 0 0 1px #e6e3da; transform: rotate(-9deg)"></div>
+    </div>
+    <div class="p plaque" style="left: -95px; top: -50px; transform: translate3d(-560px, -660px, -397px)"><b>White on White</b><span>Eyüp Çimen, 2021–today</span><i>Clean Swift (VIP)</i></div>
+
+    <!-- desk, against the wall -->
+    <div class="p" style="width: 1300px; height: 600px; left: -650px; top: -300px; transform: translate3d(0px, 0px, -100px) rotateX(90deg); background-color: #a57d55; background-image: radial-gradient(ellipse 800px 400px at 50% 60%, rgba(255,220,170,.12), transparent 70%), repeating-linear-gradient(90deg, rgba(60,35,15,.1) 0 1px, transparent 1px 41px)"></div>
+    <div class="p" style="width: 1300px; height: 34px; left: -650px; top: -17px; transform: translate3d(0px, 17px, 200px); background: #8a6542"></div>
+    <div class="p" style="width: 600px; height: 34px; left: -300px; top: -17px; transform: translate3d(-650px, 17px, -100px) rotateY(-90deg); background: #7b5a3a"></div>
+    <div class="p" style="width: 600px; height: 34px; left: -300px; top: -17px; transform: translate3d(650px, 17px, -100px) rotateY(90deg); background: #7b5a3a"></div>
+    <div class="p" style="width: 40px; height: 702px; left: -20px; top: -351px; transform: translate3d(-615px, 385px, 175px); background: #3a3833"></div>
+    <div class="p" style="width: 40px; height: 702px; left: -20px; top: -351px; transform: translate3d(615px, 385px, 175px); background: #3a3833"></div>
+    <div class="p" style="width: 40px; height: 702px; left: -20px; top: -351px; transform: translate3d(-615px, 385px, -375px); background: #2e2c28"></div>
+    <div class="p" style="width: 40px; height: 702px; left: -20px; top: -351px; transform: translate3d(615px, 385px, -375px); background: #2e2c28"></div>
+
+    <!-- desk items -->
+    <div class="p" style="width: 540px; height: 380px; left: -270px; top: -190px; transform: translate3d(0px, -1px, -150px) rotateX(90deg); background: radial-gradient(ellipse at 50% 50%, rgba(40,28,12,.45) 0%, rgba(40,28,12,.25) 45%, transparent 72%)"></div>
+    <div class="p" style="width: 420px; height: 120px; left: -210px; top: -60px; transform: translate3d(0px, -20px, 130px) rotateX(90deg); background-color: #ebe5d7; background-image: repeating-linear-gradient(90deg, transparent 0 4px, #d4cbb7 4px 6px), repeating-linear-gradient(0deg, transparent 0 6px, #d4cbb7 6px 8px); background-size: 26px 26px; background-position: 6px 8px; border-radius: 6px; box-shadow: inset 0 0 0 6px #ebe5d7"></div>
+    <div class="p" style="width: 420px; height: 20px; left: -210px; top: -10px; transform: translate3d(0px, -10px, 190px); background: #d4cbb7; border-radius: 0 0 4px 4px"></div>
+    <div class="p" style="width: 62px; height: 110px; left: -31px; top: -55px; transform: translate3d(612px, -12px, 130px) rotateX(90deg); background: #ebe5d7; border-radius: 6px 6px 10px 10px; box-shadow: inset 0 38px 0 #e1dacb, inset 0 40px 0 #bdb49f"></div>
+
+    <!-- disk boxes (disks are added by app.js) -->
+    <div id="boxes"></div>
+
+    <!-- the Mac -->
+    <div class="p mac3d" id="mac3d" style="left: 0px; top: 0px; transform: translate3d(0px, -3px, -150px)">
+      <div class="p" style="width: 460px; height: 640px; left: -230px; top: -320px; transform: translate3d(0px, -320px, -210px) rotateY(180deg); background: #d6cebb; border-radius: 8px"></div>
+      <div class="p" style="width: 420px; height: 640px; left: -210px; top: -320px; transform: translate3d(-230px, -320px, 0px) rotateY(-90deg); background: #d3cbb8; border-radius: 8px; box-shadow: inset 0 -56px 0 #c9c0ab"></div>
+      <div class="p" style="width: 420px; height: 640px; left: -210px; top: -320px; transform: translate3d(230px, -320px, 0px) rotateY(90deg); background: #e0d9c8; border-radius: 8px; box-shadow: inset 0 -56px 0 #d4ccb8"></div>
+      <div class="p" style="width: 460px; height: 420px; left: -230px; top: -210px; transform: translate3d(0px, -640px, 0px) rotateX(90deg); background-color: #efe9dc; border-radius: 8px; background-image: linear-gradient(#cbc2ad, #cbc2ad), repeating-linear-gradient(90deg, transparent 0 10px, #d9d1bf 10px 13px); background-size: 260px 34px, 300px 60px; background-position: 100px 28px, 80px 90px; background-repeat: no-repeat"></div>
+
+      <div class="mac" id="mac" data-drop="1">
+        <div class="bezel"><div class="screen" id="screen"></div></div>
+        <div class="badge">EÇ 2012</div>
+        <div class="slot"><div class="slot-disk" id="slotDisk" hidden></div></div>
+        <button class="eject" id="eject" aria-label="Eject disk">
+          <svg width="14" height="12" viewBox="0 0 16 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M8 2 L14 8 H2 Z"></path><path d="M2 12 H14"></path></svg>
+        </button>
+        <div class="foot"></div>
+        <div class="inserting" id="inserting" hidden><div class="floppy"><div class="floppy-shutter"></div><div class="floppy-label"><i></i><span></span></div></div></div>
+        <div class="ejecting" id="ejecting" hidden><div class="floppy"><div class="floppy-shutter"></div><div class="floppy-label"><i></i><span></span></div></div></div>
+      </div>
+    </div>
+
+  </div>
+  </div>
+
+  <div class="menubar">
+    <div>
+      <strong>Eyüp Çimen</strong>
+      <span>Senior iOS Developer</span>
+      <span class="open">● Open to work</span>
+    </div>
+    <div>
+      <button class="qbtn" id="quickBtn">Quick view</button>
+      <span>Weil der Stadt, DE</span>
+      <span id="clock"></span>
+    </div>
+  </div>
+
+  <button class="back" id="back" hidden>
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 2 L4 7 L9 12"></path></svg>
+    Back to the room
+  </button>
+  <div class="hint" id="hint" aria-live="polite"></div>
+  <div class="fly" id="fly" hidden><div class="floppy"><div class="floppy-shutter"></div><div class="floppy-label"><i></i><span></span></div></div></div>
+</div>
+</div>
+
+<div class="qback" id="qback" hidden></div>
+<div class="quick" id="quick" role="dialog" aria-modal="true" aria-label="Quick view" hidden></div>
+
+<noscript>
+  <div style="position:fixed;inset:0;background:#f4f1e8;color:#16181d;padding:32px;font-family:system-ui,sans-serif;overflow:auto">
+    <h1>Eyüp Çimen · Senior iOS Developer</h1>
+    <p>12+ years of native iOS. Swift, SwiftUI, Objective-C. Weil der Stadt, Germany. Open to work.</p>
+    <p><a href="mailto:cmneyp@gmail.com">cmneyp@gmail.com</a> · <a href="https://github.com/eyupcimen">GitHub</a></p>
+  </div>
+</noscript>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
