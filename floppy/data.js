@@ -23,7 +23,7 @@ window.SITE = {
       stack: 'SwiftUI · MVVM · SPM · Firebase · Alamofire · Bitrise' },
 
     { id: 'bilet', box: 'work', kind: 'project', name: 'Bilet Dükkanı', short: 'BD', color: '#1C4A86', ink: '#ffffff',
-      company: 'Roofstacks · Istanbul', role: 'Senior iOS Developer', dates: 'Oct 2021 – Apr 2022', url: '',
+      company: 'Roofstacks · Istanbul', role: 'Senior iOS Developer', dates: 'Oct 2021 – Apr 2022', url: 'https://biletdukkani.com',
       bullets: ['Developed and released a low-cost flight ticket app',
         'Introduced the Wallet feature: ticket purchase 35% faster',
         'Google Analytics for the business team: review cycle improved 23%',
@@ -31,7 +31,7 @@ window.SITE = {
       stack: 'Clean Swift (VIP) · RxSwift · Realm · Crashlytics · Moya' },
 
     { id: 'fups', box: 'work', kind: 'project', name: 'Fups Messenger', short: 'FU', color: '#3F6B2A', ink: '#ffffff',
-      company: 'Ipucu Software · Istanbul', role: 'Senior iOS Developer', dates: 'Dec 2020 – Oct 2021', url: '',
+      company: 'Ipucu Software · Istanbul', role: 'Senior iOS Developer', dates: 'Dec 2020 – Oct 2021', url: 'https://fups.com',
       bullets: ['Real-time messaging inside the Fups payment app, built on XMPP',
         'Introduced Realm: messages load 45% faster',
         'In-chat money: send / request, family accounts, shared payments',
@@ -47,13 +47,13 @@ window.SITE = {
       stack: 'MVVM · GraphQL · Moya · Firebase · NFC / BLE / QR · AVFoundation' },
 
     { id: 'leo', box: 'work', kind: 'project', name: 'Leo AR', short: 'AR', color: '#5B1F99', ink: '#ffffff',
-      company: 'Leo AR · Remote (San Francisco)', role: 'Senior iOS Developer', dates: 'Oct 2019 – Mar 2020', url: '',
+      company: 'Leo AR · Remote (San Francisco)', role: 'Senior iOS Developer', dates: 'Oct 2019 – Mar 2020', url: 'https://leoapp.com',
       bullets: ['Added Motion Capture to an AR app: ~60 million dance moves recorded',
         'Integrated a native ARKit module into a React Native app'],
       stack: 'ARKit · RealityKit · Motion Capture · React Native' },
 
     { id: 'thy', box: 'work', kind: 'project', name: 'Turkish Airlines Cargo', short: 'TK', color: '#B50E2A', ink: '#ffffff',
-      company: 'Medyasoft Digital · Istanbul', role: 'Senior iOS Developer', dates: 'Jan 2019 – Oct 2019', url: '',
+      company: 'Medyasoft Digital · Istanbul', role: 'Senior iOS Developer', dates: 'Jan 2019 – Oct 2019', url: 'https://turkishcargo.com',
       bullets: ['Modules for the Turkish Airlines Cargo Portal (COMIS)',
         'Fixed memory leaks: 21% better performance',
         'Universal iPhone / iPad support',
@@ -80,19 +80,13 @@ window.SITE = {
         'Where it started: Objective-C and MVC'],
       stack: 'Objective-C · MVC · App Store' },
 
-    { id: 'legal', box: 'side', kind: 'project', name: 'LegalVector', short: 'LV', color: '#E8B84A', ink: '#111111', body: '#2b3f6b',
-      company: 'Side project', role: 'Builder', dates: '[YEAR]', url: '',
-      bullets: ['RAG legal knowledge base: lawyers upload documents, users ask questions',
-        'Claude answers with source citations',
-        'Semantic search with pgvector'],
-      stack: 'Next.js · Supabase · pgvector · Claude API' },
-
-    { id: 'n8n', box: 'side', kind: 'project', name: 'AI Content Pipeline', short: 'AI', color: '#EA6A4B', ink: '#111111', body: '#5b2b4f',
-      company: 'Side project', role: 'Builder', dates: '[YEAR]', url: '',
-      bullets: ['End-to-end YouTube automation: AI video (Veo3, Sora) to auto-upload',
-        'Hook analysis with OpenAI Vision',
-        'Multi-sheet Google Sheets queue management'],
-      stack: 'n8n · Veo3 / Sora · OpenAI Vision · Google Sheets' },
+    { id: 'karar', box: 'side', kind: 'project', name: 'Karar AI', short: 'KA', color: '#E8B84A', ink: '#111111', body: '#2b3f6b',
+      company: 'Side project', role: 'Builder', dates: 'Jun 2026 – today', url: 'https://kararai.gorunbase.com',
+      bullets: ['Legal workbench for law firms: every claim linked to its source',
+        'Matter-centered flow: upload case files, find case law, draft, verify citations, export DOCX / PDF',
+        'Retrieval over 5,000+ Turkish Supreme Court decisions: ~80% exact-hit',
+        'Client names masked before they reach the LLM, tenant isolation per firm'],
+      stack: 'Next.js · FastAPI · OpenSearch · Supabase · Celery · Claude API' },
 
     { id: 'skills', box: 'side', kind: 'skills', name: 'All my skills', short: '{ }', color: '#f2c230', ink: '#111111', body: '#3a3a3a', tagline: '20 skills, three levels.' },
     { id: 'term', box: 'side', kind: 'term', name: 'Unlabeled disk', short: '?', color: '#0d0f0c', ink: '#b8f5a2', tagline: 'No label. Insert at own risk.' },
@@ -103,6 +97,18 @@ window.SITE = {
     expert: ['Swift', 'SwiftUI', 'UIKit', 'Objective-C', 'MVVM / VIP / MVC', 'Protocol-Oriented Programming'],
     advanced: ['Swift Package Manager', 'Async/Await · GCD', 'ARKit · RealityKit', 'Firebase · Crashlytics', 'RxSwift · Combine', 'Realm · CoreData', 'REST API · GraphQL', 'Bitrise CI/CD', 'n8n Automation', 'LLM Prompt Engineering', 'Claude API · OpenAI API', 'AI-assisted development'],
     intermediate: ['Next.js · TypeScript', 'Supabase · pgvector']
+  },
+
+  // Paintings on the back wall. Change title / artist / medium for the plaque text.
+  // image: put a file in floppy/assets/wall/ and write its path, e.g. 'assets/wall/swift.jpg'.
+  // Empty image keeps the drawn painting. Frame size and position stay the same.
+  wall: {
+    swiftui: { title: 'Composition with VStack and HStack', artist: 'Eyüp Çimen, 2022–today', medium: 'SwiftUI on Xcode canvas', image: '' },
+    swift:   { title: 'Swift, in Orange and Late-Night Red', artist: 'Eyüp Çimen, 2016–today', medium: 'Value types on protocols', image: '' },
+    objc:    { title: 'Untitled [message]', artist: 'Eyüp Çimen, 2012–today', medium: 'Objective-C on brackets', image: '' },
+    me:      { title: 'Self-Portrait with Xcode', artist: 'Eyüp Çimen, 2012–today', medium: 'Oil on Retina display', image: 'assets/me.jpg' },
+    mvvm:    { title: 'Homage to the Layer', artist: 'Eyüp Çimen, 2020–today', medium: 'Model, ViewModel, View', image: '' },
+    clean:   { title: 'White on White', artist: 'Eyüp Çimen, 2021–today', medium: 'Clean Swift (VIP)', image: '' }
   },
 
   // Icon wall on the window-side wall. Original line drawings (48x48), not Apple logos.

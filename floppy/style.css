@@ -128,3 +128,44 @@ a{color:#111}a:hover{color:#000}
   .quick{padding:22px 18px;top:12px;transform:translateX(-50%);max-height:calc(100vh - 24px)}
   .qrow{grid-template-columns:1fr}
 }
+
+/* ---------- room textures (tex/*.svg, procedural) ---------- */
+.tx-floor{background:
+  linear-gradient(to bottom, rgba(20,12,5,.55), rgba(20,12,5,0) 8%),
+  linear-gradient(to right, rgba(20,12,5,.45), rgba(20,12,5,0) 6%, rgba(20,12,5,0) 94%, rgba(20,12,5,.45)),
+  radial-gradient(ellipse 55% 45% at 72% 38%, rgba(255,225,180,.12), transparent 70%),
+  url(tex/floor.svg) 0 0/680px 1600px,
+  #7c5a3c}
+.tx-rug{background:
+  radial-gradient(ellipse at 50% 50%, rgba(255,255,255,.06), rgba(0,0,0,.18) 100%),
+  url(tex/rug.svg) 0 0/160px 160px,
+  #5f6a58}
+.tx-wall-back{background:
+  linear-gradient(to top, rgba(25,28,22,.4), rgba(25,28,22,0) 5%),
+  linear-gradient(to right, rgba(25,28,22,.38), rgba(25,28,22,0) 5%, rgba(25,28,22,0) 95%, rgba(25,28,22,.38)),
+  linear-gradient(to bottom, rgba(25,28,22,.28), rgba(25,28,22,0) 18%),
+  url(tex/plaster.svg) 0 0/800px 800px,
+  radial-gradient(ellipse 1700px 1300px at 78% 42%, #9ea296 0%, #82877b 50%, #6b7066 100%)}
+.tx-wall-left{background:
+  linear-gradient(to left, rgba(20,22,18,.42), rgba(20,22,18,0) 9%),
+  linear-gradient(to top, rgba(20,22,18,.35), rgba(20,22,18,0) 6%),
+  url(tex/plaster.svg) 0 0/800px 800px,
+  linear-gradient(to left, #686d62, #5a5f55)}
+.tx-wall-right{background:
+  linear-gradient(to right, rgba(25,28,22,.4), rgba(25,28,22,0) 9%),
+  linear-gradient(to top, rgba(25,28,22,.35), rgba(25,28,22,0) 6%),
+  url(tex/plaster.svg) 0 0/800px 800px,
+  radial-gradient(ellipse 1200px 1000px at 25% 45%, #8a8f82 0%, #757a6f 60%, #686d62 100%)}
+.tx-desk{background:
+  radial-gradient(ellipse 800px 400px at 50% 60%, rgba(255,220,170,.14), transparent 70%),
+  linear-gradient(to bottom, rgba(40,22,8,.28), rgba(40,22,8,0) 10%, rgba(40,22,8,0) 92%, rgba(40,22,8,.2)),
+  url(tex/desk.svg) 0 0/100% 100%,
+  #a57d55}
+.tx-desk-edge{background:
+  linear-gradient(to bottom, rgba(255,230,190,.18), rgba(0,0,0,0) 20%, rgba(0,0,0,.22)),
+  url(tex/desk.svg) 0 40%/1300px 600px,
+  #8a6542}
+.tx-desk-edge.side{background:
+  linear-gradient(to bottom, rgba(255,230,190,.1), rgba(0,0,0,.3)),
+  url(tex/desk.svg) 0 40%/1300px 600px,
+  #7b5a3a}

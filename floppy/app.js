@@ -137,6 +137,19 @@
   })();
 
   // Portrait fallback until floppy/assets/me.jpg exists.
+  // ---------- wall paintings + plaques (content from data.js) ----------
+  (function buildWall() {
+    var W = S.wall || {};
+    Array.prototype.forEach.call(document.querySelectorAll('.art[data-art]:not(.tile)'), function (el) {
+      var id = el.getAttribute('data-art'), w = W[id], pl = el.nextElementSibling;
+      if (!w) return;
+      if (pl && pl.classList.contains('plaque')) pl.innerHTML = '<b>' + esc(w.title) + '</b><span>' + esc(w.artist) + '</span><i>' + esc(w.medium) + '</i>';
+      el.setAttribute('aria-label', 'Painting: ' + w.title);
+      if (id === 'me') { if (w.image) $('portrait').src = w.image; return; }
+      if (w.image) el.innerHTML = '<img src="' + esc(w.image) + '" alt="' + esc(w.title) + '" style="width:100%;height:100%;object-fit:cover;display:block">';
+    });
+  })();
+
   var portrait = $('portrait');
   var portraitFallback = function () {
     if (portrait.dataset.fallback) return;
@@ -165,7 +178,7 @@
       '<div class="scroll" tabindex="0">' + body + '</div>' + (foot ? '<div class="winbar">' + foot + '</div>' : '') + '</div>';
   }
   function projectHTML(d) {
-    var body = '<div class="h1">' + esc(d.name) + '</div><div>' + esc(d.company) + '</div><div>' + esc(d.role) + ' · ' + esc(d.dates) + '</div>' +
+    var body = '<div class="h1">' + esc(d.name) + '</div><div>' + esc(d.company) + '</div><div>' + esc(d.role) + (d.dates ? ' · ' + esc(d.dates) : '') + '</div>' +
       '<div class="sec">What I did</div><ul>' + d.bullets.map(function (b) { return '<li>• ' + esc(b) + '</li>'; }).join('') + '</ul>' +
       '<div class="sec">Stack</div><div>' + esc(d.stack) + '</div>';
     var foot = d.url ? '<a class="launch" href="' + esc(d.url) + '" target="_blank" rel="noopener noreferrer">Launch ↗</a>' : '';
@@ -182,7 +195,7 @@
       '<input id="termIn" class="term-in" autocomplete="off" spellcheck="false"></div></div>';
   }
   function sadHTML() {
-    return '<div class="sad fade"><div class="pix sm">' + cells(SAD) + '</div><div>Error 404: job not found.</div>' +
+    return '<div class="sad fade"><div class="pix sm">' + cells(SAD) + '</div><div>This disk is damaged. My inbox is not.</div>' +
       '<div style="color:#b9b6aa">Let\'s fix that together.</div><div style="display:flex;gap:14px">' +
       '<a href="mailto:' + esc(S.person.email) + '">' + esc(S.person.email) + '</a>' +
       '<a href="' + esc(S.person.github) + '" target="_blank" rel="noopener noreferrer">GitHub</a>' +
@@ -227,9 +240,9 @@
     if (cmd === 'ls skills') return S.skills.expert.slice(0, 4).concat(['...and ' + (S.skills.advanced.length + S.skills.intermediate.length + 2) + ' more on the skills disk']);
     if (cmd === 'ls projects' || cmd === 'ls') return names;
     if (cmd === 'contact') return ['mail    ' + S.person.email, 'github  github.com/eyupcimen'];
-    if (cmd === 'cv') return ['[CV LINK]'];
+    if (cmd === 'cv') return ['CV on request:', 'mail    ' + S.person.email];
     if (cmd.indexOf('sudo') === 0) return ['Nice try.'];
-    return ['command not found: ' + raw.trim(), 'type "help"'];
+    return ['unknown command: ' + raw.trim(), 'type "help"'];
   }
   $('screen').addEventListener('keydown', function (e) {
     if (e.target.id !== 'termIn' || e.key !== 'Enter') return;
@@ -349,7 +362,7 @@
     var side = S.disks.filter(function (d) { return d.box === 'side' && d.kind === 'project'; });
     var row = function (d) {
       return '<div class="qrow"><strong>' + (d.url ? '<a href="' + esc(d.url) + '" target="_blank" rel="noopener noreferrer">' + esc(d.name) + '</a>' : esc(d.name)) + '</strong>' +
-        '<span>' + esc(d.company) + ' · ' + esc(d.role) + '</span><span>' + esc(d.dates) + '</span></div>';
+        '<span>' + esc(d.company) + ' · ' + esc(d.role) + '</span><span>' + esc(d.dates || 'ongoing') + '</span></div>';
     };
     var chips = function (l) { return '<div class="qskills">' + l.map(function (s) { return '<span>' + esc(s) + '</span>'; }).join('') + '</div>'; };
     return '<button class="qclose" id="qclose" aria-label="Close quick view"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M2 2 L12 12 M12 2 L2 12"></path></svg></button>' +

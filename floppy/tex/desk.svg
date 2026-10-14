@@ -1,0 +1,7 @@
+<svg xmlns='http://www.w3.org/2000/svg' width='1300' height='600' preserveAspectRatio='none'>
+<filter id='g' x='0' y='0' width='100%' height='100%'><feTurbulence type='fractalNoise' baseFrequency='.0025 .07' numOctaves='5' seed='11'/><feColorMatrix values='0 0 0 0 .2  0 0 0 0 .11  0 0 0 0 .04  1.1 0 0 0 -.45'/></filter>
+<filter id='w' x='0' y='0' width='100%' height='100%'><feTurbulence type='turbulence' baseFrequency='.004 .03' numOctaves='2' seed='4'/><feColorMatrix values='0 0 0 0 .25  0 0 0 0 .14  0 0 0 0 .05  .8 0 0 0 -.1'/></filter>
+<rect width='1300' height='600' fill='#a57d55'/>
+<rect width='1300' height='600' filter='url(#w)' opacity='.5'/>
+<rect width='1300' height='600' filter='url(#g)'/>
+</svg>
