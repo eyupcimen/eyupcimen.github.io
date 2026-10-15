@@ -100,7 +100,7 @@ window.SITE = {
   },
 
   // Paintings on the back wall. Change title / artist / medium for the plaque text.
-  // image: put a file in floppy/assets/wall/ and write its path, e.g. 'assets/wall/swift.jpg'.
+  // image: put a file in assets/wall/ and write its path, e.g. 'assets/wall/swift.jpg'.
   // Empty image keeps the drawn painting. Frame size and position stay the same.
   wall: {
     swiftui: { title: 'Composition with VStack and HStack', artist: 'Eyüp Çimen, 2022–today', medium: 'SwiftUI on Xcode canvas', image: '' },

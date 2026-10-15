@@ -136,7 +136,7 @@
     $('tiles').outerHTML = html;
   })();
 
-  // Portrait fallback until floppy/assets/me.jpg exists.
+  // Portrait fallback until assets/me.jpg exists.
   // ---------- wall paintings + plaques (content from data.js) ----------
   (function buildWall() {
     var W = S.wall || {};
@@ -154,7 +154,7 @@
   var portraitFallback = function () {
     if (portrait.dataset.fallback) return;
     portrait.dataset.fallback = '1';
-    portrait.src = '../assets/img/avataaars.svg'; portrait.style.objectFit = 'contain'; portrait.style.background = '#e9e3d3';
+    portrait.src = 'assets/img/avataaars.svg'; portrait.style.objectFit = 'contain'; portrait.style.background = '#e9e3d3';
   };
   portrait.addEventListener('error', portraitFallback);
   if (portrait.complete && portrait.naturalWidth === 0) portraitFallback();
